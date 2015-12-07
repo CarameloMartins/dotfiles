@@ -1,0 +1,12 @@
+#! /bin/bash
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+#-------------------------------------------------------------
+# Source global definitions (if any).
+#-------------------------------------------------------------
+
+if [ -f ~/.bash_profile ]; then
+      . ~/.bash_profile   # --> Read /etc/bashrc, if present.
+fi
