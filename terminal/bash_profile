@@ -1,0 +1,15 @@
+#-------------------------------------------------------------------------------
+# Sources:
+# http://stackoverflow.com/questions/8880603/loop-through-array-of-strings-in-bash-script
+#-------------------------------------------------------------------------------
+
+# Add ~/.bin to $PATH.
+export PATH="$PATH:$HOME/.bin"
+
+# Load all shell files.
+for file in ~/.bash_*;
+do
+  if [[ "$file" != "$HOME/.bash_history" ]] && [[ "$file" != "$HOME/.bash_profile" ]]; then
+    source "$file"
+  fi
+done

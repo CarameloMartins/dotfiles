@@ -1,1 +1,15 @@
-[ -n "$PS1" ] && source ~/.bash_prompt;
+#-------------------------------------------------------------------------------
+# Template .bashrc file settings.
+# Source: http://tldp.org/LDP/abs/html/sample-bashrc.html
+#-------------------------------------------------------------------------------
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+#-------------------------------------------------------------------------------
+# Source my own .bash_profile file.
+#-------------------------------------------------------------------------------
+
+if [ -f ~/.bash_profile ]; then
+  source ~/.bash_profile
+fi
