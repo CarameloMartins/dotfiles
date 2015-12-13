@@ -4,4 +4,3 @@ BASIC_PS1="\[\e[33m\]\u \[\e[97m\]at \[\e[32m\]\h \[\e[97m\]in \[\e[34m\]\w \[\e
 # Set $PS1 according to known variables.
 PS1=""
 PS1+=$BASIC_PS1
-PS1+=$BRANCH
