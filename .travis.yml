@@ -1,0 +1,11 @@
+language: bash
+
+before_script:
+  - sudo apt-get -y install shellcheck
+
+script:
+  - shellcheck terminal/install.sh
+
+branches:
+  only:
+    - master
