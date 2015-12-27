@@ -8,6 +8,8 @@ script:
   - bash -n terminal/remove.sh
   - bash -n bin/install.sh
   - bash -n bin/remove.sh
+  - bash -n git/install.sh
+  - bash -n git/remove.sh
 
 notifications:
   email: false
