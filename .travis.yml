@@ -1,7 +1,13 @@
 language: bash
 
 script:
+  - bash -n scripts/bootstrap.sh
+  - bash -n scripts/install.sh
+  - bash -n scripts/remove.sh
   - bash -n terminal/install.sh
+  - bash -n terminal/remove.sh
+  - bash -n bin/install.sh
+  - bash -n bin/remove.sh
 
 notifications:
   email: false
