@@ -3,6 +3,9 @@
 This repo is a collection of my dotfiles and some custom scripts along with setup configurations
 and bootstrap scripts.
 
+**Status:**  
+[![Build Status](https://travis-ci.org/caramelomartins/dotfiles.svg?branch=master)](https://travis-ci.org/caramelomartins/dotfiles)
+
 ## Concept
 
 ## Installation
