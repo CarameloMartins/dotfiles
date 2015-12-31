@@ -13,8 +13,16 @@ cd "$DIR"
 # Remove global .gitignore.
 #-------------------------------------------------------------------------------
 if [ -h "$HOME/.gitignore" ]; then
-  echo "Removing global .gitignore..."
+  echo "Removing global .gitignore."
   rm "$HOME/.gitignore"
+
 else
-  echo "A global .gitignore is not currently installed..."
+  echo "Global .gitignore is not currently installed."
+fi
+
+if [ -f "$HOME/.gitconfig" ]; then
+  echo "Removing gitconfig."
+  rm "$HOME/.gitconfig"
+else
+  echo ".gitconfig file is not currently installed."
 fi
