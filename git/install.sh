@@ -35,4 +35,4 @@ fi
 #  sed -i "s/\[GIT-EMAIL]/\$EMAIL/g" "$HOME/.gitconfig"
 #else
 #  echo "A gitconfig file was already found."
-#fi
+# fi
