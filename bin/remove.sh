@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-#-------------------------------------------------------------------------------
-# Remove $HOME/.bin folder.
-#-------------------------------------------------------------------------------
+##
+# Remove $HOME/.bin folder and its contents.
+##
 
 ##
 # Source:
@@ -13,6 +13,7 @@ cd "$DIR"
 
 BIN="$HOME/.bin"
 
+# Remove files in ~/-bin folder.
 echo "- Removing files that were copied before."
 
 find -type f -name "*.cp" |
@@ -28,6 +29,7 @@ do
   fi
 done
 
+# Remove ~/.bin folder.
 if [ -d "$HOME/.bin" ]; then
   echo "- Folder \$HOME/.bin exists. Removing it."
   rmdir "$HOME/.bin"

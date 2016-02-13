@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-#-------------------------------------------------------------------------------
-# Install bin/ in $HOME with as .bin.
-#-------------------------------------------------------------------------------
+##
+# Install ~/.bin and its contents.
+##
 
 ##
 # Source:
@@ -11,6 +11,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"
 
+# Install ~/.bin if none exists.
 if [ ! -d "$HOME/.bin" ]; then
   echo "- Folder \$HOME/.bin doesn't exist. Creating it."
   mkdir "$HOME/.bin"
@@ -20,16 +21,17 @@ fi
 
 BIN="$HOME/.bin"
 
+# Copy custom scripts to ~/.bin.
 echo "- Copying files that don't exist."
 
-find -type f -name "*.cp" |
+find -type f -name "*.copy" |
 while read FILE
 do
   FILE=${FILE%.*}
   echo "- Checking $BIN/${FILE##*/}."
   if [ ! -f "$BIN/${FILE##*/}" ]; then
     echo " - Installing $BIN/${FILE##*/}."
-    cp "$DIR/${FILE##*/}.cp" "$BIN/${FILE##*/}"
+    cp "$DIR/${FILE##*/}.copy" "$BIN/${FILE##*/}"
     chmod +x "$BIN/${FILE##*/}"
   else
     echo " - ${FILE##*/} already exists."
