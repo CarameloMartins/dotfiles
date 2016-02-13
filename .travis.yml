@@ -8,15 +8,7 @@ before_install:
     - sudo apt-get install shellcheck -y
 
 script:
-  - shellcheck scripts/bootstrap.sh
-  - shellcheck scripts/install.sh
-  - shellcheck scripts/remove.sh
-  - shellcheck terminal/install.sh
-  - shellcheck terminal/remove.sh
-  - shellcheck bin/install.sh
-  - shellcheck bin/remove.sh
-  - shellcheck git/install.sh
-  - shellcheck git/remove.sh
+  - tests/shellcheck.sh
 
 matrix:
   fast_finish: true
