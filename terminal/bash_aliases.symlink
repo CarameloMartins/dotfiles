@@ -1,0 +1,11 @@
+# ~/.bash_aliases: sourced by ~/.bash_profile.
+
+##
+# Get external IP address.
+##
+alias exip="$HOME/.bin/exip.sh"
+
+##
+# Ping for 4 times - emulate Windows.
+##
+alias ping="ping -c 4"
