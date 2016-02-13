@@ -1,16 +1,28 @@
 language: bash
 
-script:
-  - bash -n scripts/bootstrap.sh
-  - bash -n scripts/install.sh
-  - bash -n scripts/remove.sh
-  - bash -n terminal/install.sh
-  - bash -n terminal/remove.sh
-  - bash -n bin/install.sh
-  - bash -n bin/remove.sh
-  - bash -n git/install.sh
-  - bash -n git/remove.sh
+sudo: false
 
+addons:
+  apt:
+    sources:
+      - debian-sid
+    packages:
+      -shellcheck
+
+script:
+  - shellcheck scripts/bootstrap.sh
+  - shellcheck scripts/install.sh
+  - shellcheck scripts/remove.sh
+  - shellcheck terminal/install.sh
+  - shellcheck terminal/remove.sh
+  - shellcheck bin/install.sh
+  - shellcheck bin/remove.sh
+  - shellcheck git/install.sh
+  - shellcheck git/remove.sh
+
+matrix:
+  fast_finish: true
+  
 notifications:
   email: false
 
