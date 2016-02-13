@@ -69,6 +69,7 @@ Below is the folder structure and a short summary:
 - `scripts` - Custom scripts for dotfiles management.
   - `bootstrap.sh` - Bootstraps system for dotfiles installation.
 - `terminal` - Terminal custom settings.
+  - `bash_aliases` - Aliases that will be sourced to bash.
   - `bash_logout` - Default Ubuntu logout shell script.
   - `bash_profile` - Holds main `bash` configs and sources other files.
   - `bash_prompt` - Holds prompt configurations.
