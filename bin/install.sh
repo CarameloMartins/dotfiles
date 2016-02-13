@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-
-##
+#
 # Install ~/.bin and its contents.
-##
 
 ##
 # Source:

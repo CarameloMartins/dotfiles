@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-
-##
+#
 # Remove $HOME/.bin folder and its contents.
-##
 
 ##
 # Source:
