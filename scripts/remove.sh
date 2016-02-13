@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-
-#-------------------------------------------------------------------------------
+#
 # Run all remove.sh scripts.
-#-------------------------------------------------------------------------------
 
 ##
 # Source:
@@ -14,6 +12,6 @@ cd "$DIR"
 find .. -type f -name "*remove.sh" | grep -v "scripts" |
 while read FILE
 do
-  echo "Running '${FILE}'."
+  echo "Running '${FILE%.*}'."
   ${FILE}
 done

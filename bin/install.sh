@@ -14,14 +14,12 @@ if [ ! -d "$HOME/.bin" ]; then
   echo "- Folder \$HOME/.bin doesn't exist. Creating it."
   mkdir "$HOME/.bin"
 else
-  echo "- Folder \$HOME/.bin exists already."
+  echo "- Folder \$HOME/.bin already exists."
 fi
 
 BIN="$HOME/.bin"
 
 # Copy custom scripts to ~/.bin.
-echo "- Copying files that don't exist."
-
 find -type f -name "*.copy" |
 while read FILE
 do
