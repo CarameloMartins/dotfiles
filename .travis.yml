@@ -1,13 +1,11 @@
 language: bash
 
-sudo: false
+sudo: required
 
-addons:
-  apt:
-    sources:
-      - debian-sid
-    packages:
-      -shellcheck
+before_install:
+    - echo "deb http://archive.ubuntu.com/ubuntu/ wily universe" | sudo tee -a /etc/apt/sources.list
+    - sudo apt-get update -q
+    - sudo apt-get install shellcheck -y
 
 script:
   - shellcheck scripts/bootstrap.sh
@@ -22,7 +20,7 @@ script:
 
 matrix:
   fast_finish: true
-  
+
 notifications:
   email: false
 
