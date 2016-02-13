@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-
-##
+#
 # Install script for Terminal settings.
-##
 
 ##
 # Source:
