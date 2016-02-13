@@ -13,24 +13,24 @@ cd "$DIR"
 
 BIN="$HOME/.bin"
 
-echo "Removing files that were copied before..."
+echo "- Removing files that were copied before."
 
 find -type f -name "*.cp" |
 while read FILE
 do
   FILE=${FILE%.*}
-  echo "Checking $BIN/${FILE##*/}..."
+  echo "- Checking $BIN/${FILE##*/}."
   if [ -f "$BIN/${FILE##*/}" ]; then
-    echo "- Removing $BIN/${FILE##*/}..."
+    echo " - Removing $BIN/${FILE##*/}."
     rm "$BIN/${FILE##*/}"
   else
-    echo "- ${FILE##*/} doesn't exist..."
+    echo " - ${FILE##*/} doesn't exist."
   fi
 done
 
 if [ -d "$HOME/.bin" ]; then
-  echo "Folder \$HOME/.bin exists. Removing it."
+  echo "- Folder \$HOME/.bin exists. Removing it."
   rmdir "$HOME/.bin"
 else
-  echo "Folder \$HOME/.bin doesn't exist."
+  echo "- Folder \$HOME/.bin doesn't exist."
 fi

@@ -14,5 +14,6 @@ cd "$DIR"
 find .. -type f -name "*remove.sh" | grep -v "scripts" |
 while read FILE
 do
+  echo "Running '${FILE}'."
   ${FILE}
 done

@@ -16,9 +16,9 @@ while read FILE
 do
   FILE=${FILE%.*} # Set correct file name!
   if [ -h "$HOME/.${FILE##*/}" ]; then
-    echo "- Removing $HOME/.${FILE##*/}!"
+    echo "- Removing $HOME/.${FILE##*/}."
     rm "$HOME/.${FILE##*/}"
   else
-    echo "- $HOME/.${FILE##*/} doesn't exist!"
+    echo "- $HOME/.${FILE##*/} doesn't exist."
   fi
 done

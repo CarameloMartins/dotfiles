@@ -13,10 +13,10 @@ cd "$DIR"
 # Install global .gitignore.
 #-------------------------------------------------------------------------------
 if [ ! -h "$HOME/.gitignore" ]; then
-  echo "Installing global .gitignore."
+  echo "- Installing global .gitignore."
   ln -s "$DIR/gitignore.lnk" "$HOME/.gitignore"
 else
-  echo "A global .gitignore file already exists."
+  echo "- A global .gitignore file already exists."
 fi
 
 #-------------------------------------------------------------------------------

@@ -16,9 +16,9 @@ while read FILE
 do
   FILE=${FILE%.*} # Set correct file name!
   if [ ! -h "$HOME/.${FILE##*/}" ]; then
-    echo "- Installing $HOME/.${FILE##*/}!"
+    echo "- Installing $HOME/.${FILE##*/}."
     ln -s "$DIR/${FILE##*/}.lnk" "$HOME/.${FILE##*/}"
   else
-    echo "- $HOME/.${FILE##*/} already exists!"
+    echo "- $HOME/.${FILE##*/} already exists."
   fi
 done
