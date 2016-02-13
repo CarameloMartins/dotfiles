@@ -12,9 +12,7 @@ cd "$DIR"
 BIN="$HOME/.bin"
 
 # Remove files in ~/-bin folder.
-echo "- Removing files that were copied before."
-
-find -type f -name "*.cp" |
+find -type f -name "*.copy" |
 while read FILE
 do
   FILE=${FILE%.*}
