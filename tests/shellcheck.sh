@@ -18,5 +18,8 @@ do
     echo "- Test was successful."
   else
     echo "- Test failed."
+    exit 1
   fi
 done
+
+exit 0
