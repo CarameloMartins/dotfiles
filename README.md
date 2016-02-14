@@ -23,7 +23,15 @@ are easily portable to other UNIX systems.
 
 ## Installation
 
-- Clone repository to a specific folder.
+For first install:
+
+```
+wget https://raw.githubusercontent.com/caramelomartins/dotfiles/master/scripts/bootstrap.sh
+chmod +x ./bootstrap.sh
+./bootstrap.sh
+```
+
+For futher installs:
 - Navigate to the repository's folder.
 - Grant access to `script/install.sh` with:
 
