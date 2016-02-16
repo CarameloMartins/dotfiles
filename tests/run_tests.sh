@@ -9,15 +9,26 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"
 
-find .. -type f -name "*.sh" |
-while read FILE
+SUCCESS=0
+FAIL=0
+
+while IFS= read -r FILE
 do
   echo "Running test for '${FILE}'."
 
+  let COUNTER++
+
   if shellcheck "${FILE}"; then
     echo "- Test was successful."
+    let SUCCESS++
   else
     echo "- Test failed."
-    exit 1
+    let FAIL++
   fi
-done
+done < <(find .. -type f -name "*.sh")
+
+echo -e "\nResult: $SUCCESS passed and $FAIL failed."
+
+if [ $FAIL -ne 0 ]; then
+  exit 1
+fi
