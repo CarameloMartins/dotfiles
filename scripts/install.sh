@@ -9,9 +9,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"
 
-find .. -type f -name "*install.sh" | grep -v "scripts" |
-while read FILE
-do
+for FILE in $(find .. -type f -name "*install.sh" | grep -v "scripts"); do
   echo "Running '${FILE%.*}'."
   ${FILE}
 done

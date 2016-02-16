@@ -9,8 +9,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"
 
-find -type f -name "*.symlink" |
-while read FILE
+while IFS= read -r FILE
 do
   FILE=${FILE%.*} # Set correct file name!
   if [ ! -h "$HOME/.${FILE##*/}" ]; then
@@ -19,4 +18,4 @@ do
   else
     echo "- $HOME/.${FILE##*/} already exists."
   fi
-done
+done < <(find -type f -name "*.symlink")

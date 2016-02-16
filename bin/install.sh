@@ -20,8 +20,7 @@ fi
 BIN="$HOME/.bin"
 
 # Copy custom scripts to ~/.bin.
-find -type f -name "*.copy" |
-while read FILE
+while IFS= read -r FILE
 do
   FILE=${FILE%.*}
   echo "- Checking $BIN/${FILE##*/}."
@@ -32,4 +31,4 @@ do
   else
     echo " - ${FILE##*/} already exists."
   fi
-done
+done <  <(find -type f -name "*.copy")

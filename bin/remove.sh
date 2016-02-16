@@ -12,8 +12,7 @@ cd "$DIR"
 BIN="$HOME/.bin"
 
 # Remove files in ~/-bin folder.
-find -type f -name "*.copy" |
-while read FILE
+while IFS= read -r FILE
 do
   FILE=${FILE%.*}
   echo "- Checking $BIN/${FILE##*/}."
@@ -23,7 +22,7 @@ do
   else
     echo " - ${FILE##*/} doesn't exist."
   fi
-done
+done < <(find -type f -name "*.copy")
 
 # Remove ~/.bin folder.
 if [ -d "$HOME/.bin" ]; then
