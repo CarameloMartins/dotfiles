@@ -9,3 +9,8 @@ alias exip="$HOME/.bin/exip.sh"
 # Ping for 4 times - emulate Windows.
 ##
 alias ping="ping -c 4"
+
+##
+# Aliases for ~./bin scripts without the need to "chmod" them.
+alias exip.sh="sh exip.sh"
+alias update.sh="sh update.sh"
