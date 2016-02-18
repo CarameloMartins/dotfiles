@@ -27,7 +27,7 @@ do
   fi
 done < <(find .. -type f -name "*.sh")
 
-echo -e "\nResult: $SUCCESS passed and $FAIL failed."
+echo -e "\nResults: $SUCCESS passed and $FAIL failed."
 
 if [ $FAIL -ne 0 ]; then
   exit 1
