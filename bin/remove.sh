@@ -3,10 +3,13 @@
 # Remove $HOME/.bin folder and its contents.
 
 ##
+# This function is used to be able to tell where a script file is and enter its
+# directory
+#
 # Source:
 #   http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 ##
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$( cd "$( dirname "$1" )" && pwd )"
 cd "$DIR"
 
 BIN="$HOME/.bin"
