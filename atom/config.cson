@@ -1,0 +1,22 @@
+"*":
+  welcome:
+    showOnStartup: false
+  core:
+    themes: [
+      "nucleus-dark-ui"
+      "atom-material-syntax"
+    ]
+    projectHome: "/home/caramelomartins/Projects"
+    disabledPackages: [
+      "exception-reporting"
+    ]
+  editor:
+    invisibles: {}
+    showIndentGuide: true
+  "markdown-preview":
+    useGitHubStyle: true
+  linter: {}
+  "linter-shellcheck":
+    enableNotice: true
+  "one-dark-ui": {}
+  "travis-ci-status": {}
