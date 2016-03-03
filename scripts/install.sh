@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Run all install.sh scripts.
+# Install dotfiles, configurations and packages in a machine.
 
 ##
 # This function is used to be able to tell where a script file is and enter its
@@ -53,7 +53,6 @@ done < <(find .. -type f -name "*.symlink")
 ##
 # Install ~/.bin folder and copy needed files.
 ##
-# Install ~/.bin if none exists.
 echo "- Installing ~./bin folder."
 
 if [ ! -d "$HOME/.bin" ]; then
@@ -65,7 +64,6 @@ fi
 
 BIN="$HOME/.bin"
 
-# Copy custom scripts to ~/.bin.
 while IFS= read -r FILE
 do
   FILE=${FILE%.*}
