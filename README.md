@@ -28,8 +28,7 @@ stored and then:
 
 ```
 wget https://raw.githubusercontent.com/caramelomartins/dotfiles/master/scripts/bootstrap.sh
-chmod +x ./bootstrap.sh
-./bootstrap.sh
+sh bootstrap.sh
 ```
 
 For futher installs:
