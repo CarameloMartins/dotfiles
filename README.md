@@ -23,7 +23,8 @@ are easily portable to other UNIX systems.
 
 ## Installation
 
-For first install:
+For first install, navigate to the folder where you want `dotfiles` repository to be
+stored and then:
 
 ```
 wget https://raw.githubusercontent.com/caramelomartins/dotfiles/master/scripts/bootstrap.sh
