@@ -33,31 +33,19 @@ sh bootstrap.sh
 
 For futher installs:
 - Navigate to the repository's folder.
-- Grant access to `script/install.sh` with:
-
-```
-chmod +x ./scripts/install.sh
-```
-
 - Run:
 
 ```
-./scripts/install.sh
+sh scripts/install.sh
 ```
 
 ### Remove
 
 - Navigate to the repository's folder.
-- Grant access to `script/remove.sh` with:
-
-```
-chmod +x ./scripts/remove.sh
-```
-
 - Run:
 
 ```
-./scripts/remove.sh
+sh /scripts/remove.sh
 ```
 
 ## Structure
@@ -68,6 +56,9 @@ There are some files that are copied into '~' and there are some files that are 
 Below is the folder structure and a short summary:
 
 - `atom` - Custom Atom configurations and packages' settings.
+  - `config.cson`
+  - `init.coffee`
+  - `snippets.cson`
 - `bin` - Personal `bin` folder that will be installed into `$HOME`.
   - `exip.sh` - Gets device's external IP.
   - `update.sh` - Updates/upgrades system.
@@ -76,6 +67,8 @@ Below is the folder structure and a short summary:
   - `gitignore` - Global `gitignore` file.
 - `scripts` - Custom scripts for dotfiles management.
   - `bootstrap.sh` - Bootstraps system for dotfiles installation.
+  - `install.sh` - Installs dotfiles, can also install configurations and packages.
+  - `remove.sh` - Removes dotfiles, can also remove configurations and packages.
 - `terminal` - Terminal custom settings.
   - `bash_aliases` - Aliases that will be sourced to bash.
   - `bash_logout` - Default Ubuntu logout shell script.
