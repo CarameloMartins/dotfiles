@@ -78,3 +78,27 @@ do
     echo "   - ${FILE##*/} already exists."
   fi
 done <  <(find ../bin -type f -name "*.copy")
+
+##
+# Install 'Atom' configuration files if Atom is currently installed.
+##
+echo "- Installing Atom configurations to ~./atom folder."
+
+if [ -d ~/.atom ]; then
+  echo "  - Atom is installed. Installing configurations."
+
+  while IFS= read -r FILE
+  do
+    FILEPATH=$(readlink -f "$FILE")
+
+    if [ ! -h "$HOME/.atom/${FILE##*/}" ]; then
+      echo "  - Installing $HOME/.atom/${FILE##*/}."
+      ln -s "$FILEPATH" "$HOME/.atom/${FILE##*/}"
+    else
+      echo "  - $HOME/.atom/${FILE##*/} already exists."
+    fi
+  done < <(find ../atom -type f)
+
+else
+  echo "  - Atom is not currently installed. Install Atom before installing configurations."
+fi

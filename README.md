@@ -6,7 +6,7 @@ configurations and bootstrap scripts.
 **Status:**  
 [![Build Status](https://travis-ci.org/caramelomartins/dotfiles.svg?branch=master)](https://travis-ci.org/caramelomartins/dotfiles)
 
-_Disclaimer: I can't guarantee any of the scripts won't mess anything up. This repository is an ongoing experience for me._
+_Warning: I can't guarantee any of the scripts won't mess anything up. This repository is an ongoing experience for me._
 
 ## Concepts
 When dealing with my configurations there are some goals I always try to keep
@@ -55,7 +55,7 @@ There are some files that are copied into '~' and there are some files that are 
 
 Below is the folder structure and a short summary:
 
-- `atom` - Custom Atom configurations and packages' settings.
+- `atom` - Custom Atom configurations.
   - `config.cson`
   - `init.coffee`
   - `snippets.cson`

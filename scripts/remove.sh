@@ -65,3 +65,20 @@ if [ -d "$HOME/.bin" ]; then
 else
   echo "  - Folder \$HOME/.bin doesn't exist."
 fi
+
+##
+# Remove Atom configuration files.
+#
+echo "- Removing Atom configuration files."
+
+while IFS= read -r FILE
+do
+  echo " - Checking '$HOME/.atom/${FILE##*/}'."
+
+  if [ -h "$HOME/.atom/${FILE##*/}" ]; then
+    echo "    - Removing $HOME/.atom/${FILE##*/}."
+    rm "$HOME/.atom/${FILE##*/}"
+  else
+    echo "    - $HOME/.atom/${FILE##*/} doesn't exist."
+  fi
+done < <(find ../atom -type f)
