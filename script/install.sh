@@ -19,7 +19,7 @@ DOTFILES=${DIR%/*}
 ##
 if [ ! -f "$HOME/.gitconfig" ]; then
   echo "- Installing .gitconfig."
-  cp "$DOTFILES/git/gitconfig.copy" "$HOME/.gitconfig"
+  cp "$DOTFILES/git/gitconfig" "$HOME/.gitconfig"
 
   # Set Git name.
   read -p "  - What's your Git name? " NAME
