@@ -49,7 +49,7 @@ sh /scripts/remove.sh
 ```
 
 ## Structure
-The dotfiles behave in a sort of modular way. Each component has installation and removal scripts and the main `install.sh` and `remove.sh` that are located in the `script` folder will call all of them, respectively.  
+The dotfiles behave in a sort of modular way. I have some folders that distinguish them but most installing/removal action is done inside one or two scripts.
 
 There are some files that are copied into '~' and there are some files that are symlinked into '~'. Along with these files, some files like `gitconfig` are used in specific ways due to security or privacy concerns.
 
