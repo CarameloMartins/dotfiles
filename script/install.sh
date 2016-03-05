@@ -77,7 +77,7 @@ do
   else
     echo "   - ${FILE##*/} already exists."
   fi
-done <  <(find ../bin -type f -name "*.copy")
+done <  <(find ../bin -type f -name "*")
 
 ##
 # Install 'Atom' configuration files if Atom is currently installed.
