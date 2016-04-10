@@ -13,6 +13,7 @@
   editor:
     invisibles: {}
     showIndentGuide: true
+    tabLength: 4
   "markdown-preview":
     useGitHubStyle: true
   linter: {}
@@ -20,3 +21,5 @@
     enableNotice: true
   "one-dark-ui": {}
   "travis-ci-status": {}
+  "linter-htmlhint": {}
+  "linter-jshint": {}

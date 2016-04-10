@@ -76,6 +76,14 @@ Below is the folder structure and a short summary:
   - `bash_prompt` - Holds prompt configurations.
   - `bashrc` - `bash` loading file.
 
+## Testing
+
+To run the test scripts, go to the tests folder (`dotfiles/tests`) and run:
+
+```
+    ./syntax_tests.sh
+```
+
 ## Resources
 [dotfiles.github.com](http://dotfiles.github.com) and all the contributors referenced
 in that page along with all dotfiles repos in [github.com](http://github.com) were my

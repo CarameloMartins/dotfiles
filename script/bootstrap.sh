@@ -3,7 +3,8 @@
 # Bootstrap a machine to run installation script.
 
 git clone https://github.com/caramelomartins/dotfiles.git
-./dotfiles/scripts/install.sh
+./dotfiles/script/setup.sh
+./dotfiles/script/dotfiles.sh
 
 ##
 # Self deleting shell script.

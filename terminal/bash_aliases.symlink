@@ -12,5 +12,5 @@ alias ping="ping -c 4"
 
 ##
 # Aliases for ~./bin scripts without the need to "chmod" them.
-alias exip.sh="sh exip.sh"
-alias update.sh="sh update.sh"
+alias exip.sh="sh ~/.bin/exip.sh"
+alias update.sh="sudo sh ~/.bin/update.sh"
