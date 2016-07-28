@@ -1,25 +1,27 @@
 "*":
-  welcome:
-    showOnStartup: false
   core:
+    autoHideMenuBar: true
+    disabledPackages: [
+      "exception-reporting"
+      "linter-perl"
+    ]
+    projectHome: "/home/caramelomartins/Projects"
     themes: [
       "nucleus-dark-ui"
       "atom-material-syntax"
-    ]
-    projectHome: "/home/caramelomartins/Projects"
-    disabledPackages: [
-      "exception-reporting"
     ]
   editor:
     invisibles: {}
     showIndentGuide: true
     tabLength: 4
-  "markdown-preview":
-    useGitHubStyle: true
   linter: {}
-  "linter-shellcheck":
-    enableNotice: true
-  "one-dark-ui": {}
-  "travis-ci-status": {}
   "linter-htmlhint": {}
   "linter-jshint": {}
+  "linter-shellcheck":
+    enableNotice: true
+  "markdown-preview":
+    useGitHubStyle: true
+  "one-dark-ui": {}
+  "travis-ci-status": {}
+  welcome:
+    showOnStartup: false

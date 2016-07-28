@@ -2,8 +2,10 @@
 #
 # Bootstrap a machine to run installation script.
 
+# Install git if it is not installed.
+
+# Clone repository, run setup script and run dotfiles script.
 git clone https://github.com/caramelomartins/dotfiles.git
-./dotfiles/script/setup.sh
 ./dotfiles/script/dotfiles.sh
 
 ##
