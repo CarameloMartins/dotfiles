@@ -1,9 +1,13 @@
 "*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "016f8b6e-eda5-4d72-acc8-57bcde20fdff"
   core:
     autoHideMenuBar: true
     disabledPackages: [
       "exception-reporting"
       "linter-perl"
+      "perltidy"
     ]
     projectHome: "/home/caramelomartins/Projects"
     themes: [
