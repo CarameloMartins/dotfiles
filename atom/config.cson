@@ -15,6 +15,7 @@
       "atom-material-syntax"
     ]
   editor:
+    fontSize: 12
     invisibles: {}
     showIndentGuide: true
     tabLength: 4
