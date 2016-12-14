@@ -11,8 +11,8 @@
     ]
     projectHome: "/home/caramelomartins/Projects"
     themes: [
-      "nucleus-dark-ui"
-      "atom-material-syntax"
+      "atom-dark-ui"
+      "atom-dark-syntax"
     ]
   editor:
     fontSize: 12
