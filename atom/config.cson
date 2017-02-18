@@ -8,6 +8,8 @@
       "exception-reporting"
       "linter-perl"
       "perltidy"
+      "language-gfm"
+      "wrap-guide"
     ]
     projectHome: "/home/caramelomartins/Projects"
     themes: [
