@@ -14,20 +14,26 @@
 require 'rubygems'
 require 'json'
 
-filename = "packages.json"
-filepath = File.expand_path("../atom/", __dir__)
+filepath = File.expand_path("../atom/packages.json", __dir__)
 
+puts "Fetching packages information..."
 packages = JSON.parse(`apm list -j`)
-user_packages = packages['user']
 filtered_user_packages = []
 
-user_packages.each do |p|
+packages['user'].each do |p|
+
+    puts "Processing " + p['name'] + "..."
     package = Hash.new
     package['name'] = p['name']
     package['version'] = p['version']
     package['homepage'] = p['homepage']
     package['repository'] = p['repository']
+
     filtered_user_packages << package
 end
 
-File.write(filepath + "/" + filename, JSON.pretty_generate(filtered_user_packages))
+puts "Writing to file..."
+
+File.write(filepath, JSON.pretty_generate(filtered_user_packages))
+
+puts "Done."
