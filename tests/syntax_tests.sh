@@ -10,7 +10,9 @@
 #   http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 ##
 DIR="$( cd "$( dirname "$1" )" && pwd )"
-cd "$DIR"
+cd "$DIR" || exit
+
+echo
 
 # Global Variables
 SUCCESS=0
@@ -18,20 +20,20 @@ FAIL=0
 
 while IFS= read -r FILE
 do
-  echo "Running test for '${FILE}'."
+  echo -n "Running test for ${FILE}... "
 
   let COUNTER++
 
   if shellcheck "${FILE}"; then
-    echo "- Test was successful."
+    echo "success."
     let SUCCESS++
   else
-    echo "- Test failed."
+    echo "failure."
     let FAIL++
   fi
 done < <(find .. -type f -name "*.sh")
 
-echo -e "\nResults: $SUCCESS passed and $FAIL failed."
+echo -e "\n$SUCCESS passed and $FAIL failed."
 
 if [ $FAIL -ne 0 ]; then
   exit 1
