@@ -10,12 +10,6 @@ before_install:
 script:
   - tests/syntax_tests.sh
 
-matrix:
-  fast_finish: true
-
-notifications:
-  email: false
-
 branches:
   only:
     - master
