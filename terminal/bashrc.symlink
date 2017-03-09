@@ -15,3 +15,6 @@
 if [ -f ~/.bash_profile ]; then
   source ~/.bash_profile
 fi
+
+# added by travis gem
+[ -f /home/caramelomartins/.travis/travis.sh ] && source /home/caramelomartins/.travis/travis.sh
