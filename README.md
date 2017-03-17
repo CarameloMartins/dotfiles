@@ -3,7 +3,6 @@
 This repo is a collection of my dotfiles and some custom scripts along with setup
 configurations and bootstrap scripts.
 
-**Status:**
 [![Build Status](https://travis-ci.org/caramelomartins/dotfiles.svg?branch=master)](https://travis-ci.org/caramelomartins/dotfiles)
 
 _Warning: I can't guarantee any of the scripts won't mess anything up. This repository is an ongoing experience for me._
@@ -28,7 +27,7 @@ stored and then:
 
 ```
 wget https://raw.githubusercontent.com/caramelomartins/dotfiles/master/scripts/bootstrap.sh
-sh bootstrap.sh
+bash bootstrap.sh
 ```
 
 For futher installs:
@@ -36,16 +35,7 @@ For futher installs:
 - Run:
 
 ```
-sh scripts/install.sh
-```
-
-### Remove
-
-- Navigate to the repository's folder.
-- Run:
-
-```
-sh /scripts/remove.sh
+bash scripts/bootstrap.sh
 ```
 
 ## Structure
