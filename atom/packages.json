@@ -1,7 +1,7 @@
 [
   {
     "name": "api-workbench",
-    "version": "0.8.43",
+    "version": "0.8.44",
     "homepage": "https://github.com/mulesoft/api-workbench#readme",
     "repository": {
       "type": "git",
@@ -88,7 +88,7 @@
   },
   {
     "name": "linter-shellcheck",
-    "version": "1.4.3",
+    "version": "1.4.4",
     "homepage": "https://github.com/AtomLinter/linter-shellcheck#readme",
     "repository": {
       "type": "git",
