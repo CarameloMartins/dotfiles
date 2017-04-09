@@ -12,10 +12,6 @@
       "wrap-guide"
     ]
     projectHome: "/home/caramelomartins/Projects"
-    themes: [
-      "atom-dark-ui"
-      "atom-dark-syntax"
-    ]
   editor:
     fontSize: 12
     invisibles: {}
