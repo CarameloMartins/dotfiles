@@ -27,12 +27,6 @@
     }
   },
   {
-    "name": "atom-weather",
-    "version": "0.0.1",
-    "homepage": null,
-    "repository": "https://github.com/atom/atom-weather"
-  },
-  {
     "name": "file-icons",
     "version": "1.7.25",
     "homepage": "https://github.com/DanBrooker/file-icons",
