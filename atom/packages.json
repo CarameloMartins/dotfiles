@@ -1,16 +1,7 @@
 [
   {
-    "name": "api-workbench",
-    "version": "0.8.45",
-    "homepage": "https://github.com/mulesoft/api-workbench#readme",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/mulesoft/api-workbench.git"
-    }
-  },
-  {
     "name": "atom-beautify",
-    "version": "0.29.23",
+    "version": "0.30.4",
     "homepage": "https://github.com/Glavin001/atom-beautify#readme",
     "repository": {
       "type": "git",
@@ -18,12 +9,21 @@
     }
   },
   {
-    "name": "file-icons",
-    "version": "1.7.25",
-    "homepage": "https://github.com/DanBrooker/file-icons",
+    "name": "busy-signal",
+    "version": "1.4.3",
+    "homepage": "https://github.com/steelbrain/busy-signal#readme",
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/DanBrooker/file-icons.git"
+      "url": "git+https://github.com/steelbrain/busy-signal.git"
+    }
+  },
+  {
+    "name": "file-icons",
+    "version": "2.1.9",
+    "homepage": "https://github.com/file-icons/atom",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/file-icons/atom.git"
     }
   },
   {
@@ -37,11 +37,20 @@
   },
   {
     "name": "highlight-selected",
-    "version": "0.11.2",
+    "version": "0.13.1",
     "homepage": "https://github.com/richrace/highlight-selected",
     "repository": {
       "type": "git",
       "url": "git+https://github.com/richrace/highlight-selected.git"
+    }
+  },
+  {
+    "name": "intentions",
+    "version": "1.1.2",
+    "homepage": "https://github.com/steelbrain/intentions#readme",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/steelbrain/intentions.git"
     }
   },
   {
@@ -55,7 +64,7 @@
   },
   {
     "name": "language-markdown",
-    "version": "0.22.0",
+    "version": "0.25.1",
     "homepage": "https://github.com/burodepeper/language-markdown#readme",
     "repository": {
       "type": "git",
@@ -73,7 +82,7 @@
   },
   {
     "name": "linter",
-    "version": "2.0.0",
+    "version": "2.2.0",
     "homepage": "https://github.com/steelbrain/linter#readme",
     "repository": {
       "type": "git",
@@ -82,7 +91,7 @@
   },
   {
     "name": "linter-perl",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "homepage": "https://github.com/s-shin/linter-perl#readme",
     "repository": {
       "type": "git",
@@ -100,7 +109,7 @@
   },
   {
     "name": "linter-phpcs",
-    "version": "1.6.4",
+    "version": "1.6.7",
     "homepage": "https://github.com/AtomLinter/linter-phpcs#readme",
     "repository": {
       "type": "git",
@@ -117,12 +126,21 @@
     }
   },
   {
-    "name": "markdown-preview-plus",
-    "version": "2.4.0",
-    "homepage": "https://github.com/Galadirith/markdown-preview-plus#readme",
+    "name": "linter-ui-default",
+    "version": "1.6.3",
+    "homepage": "https://github.com/steelbrain/linter-ui-default#readme",
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/Galadirith/markdown-preview-plus.git"
+      "url": "git+https://github.com/steelbrain/linter-ui-default.git"
+    }
+  },
+  {
+    "name": "markdown-preview-plus",
+    "version": "2.4.10",
+    "homepage": "https://github.com/atom-community/markdown-preview-plus#readme",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/atom-community/markdown-preview-plus.git"
     }
   },
   {
@@ -136,7 +154,7 @@
   },
   {
     "name": "minimap",
-    "version": "4.25.7",
+    "version": "4.29.2",
     "homepage": "https://github.com/atom-minimap/minimap#readme",
     "repository": {
       "type": "git",
@@ -154,7 +172,7 @@
   },
   {
     "name": "multi-wrap-guide",
-    "version": "0.25.2",
+    "version": "0.28.4",
     "homepage": "https://github.com/lexicalunit/multi-wrap-guide#readme",
     "repository": {
       "type": "git",
@@ -163,7 +181,7 @@
   },
   {
     "name": "tree-view-git-status",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "homepage": "https://github.com/subesokun/atom-tree-view-git-status#readme",
     "repository": {
       "type": "git",
