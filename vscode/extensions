@@ -1,7 +1,10 @@
 AlanWalk.markdown-toc
+DavidAnson.vscode-markdownlint
 EditorConfig.EditorConfig
 HookyQR.beautify
+James-Yu.latex-workshop
 PeterJausovec.vscode-docker
+ban.spellright
 christian-kohler.path-intellisense
 donjayamanne.githistory
 felixfbecker.php-debug
@@ -15,4 +18,5 @@ neilbrayfield.php-docblocker
 onecentlin.laravel-blade
 shd101wyy.markdown-preview-enhanced
 waderyan.gitblame
-wayou.vscode-todo-highlight
+yzane.markdown-pdf
+yzhang.markdown-all-in-one

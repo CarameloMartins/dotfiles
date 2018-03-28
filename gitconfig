@@ -1,6 +1,6 @@
 [user]
-	name = [GIT-NAME]
-	email = [GIT-EMAIL]
+	name = $GITNAME
+	email = $GITEMAIL
 
 [color]
 	ui = auto
