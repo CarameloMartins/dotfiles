@@ -120,3 +120,6 @@ fi
 if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 fi
+
+# PS1
+export PS1="\[\e[33m\]\u \[\e[97m\]at \[\e[32m\]\h \[\e[97m\]in \[\e[34m\]\w \[\e[97m\]\n$ "
