@@ -1,8 +1,22 @@
 {
+    "editor.renderWhitespace": "all",
+    "editor.fontSize": 11,
+    "editor.formatOnType": true,
+    "extensions.ignoreRecommendations": false,
     "workbench.startupEditor": "newUntitledFile",
+    "git.enableSmartCommit": true,
     "window.zoomLevel": -1,
     "editor.renderWhitespace": "boundary",
     "latex-workshop.view.pdf.viewer": "tab",
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "workbench.colorTheme": "Monokai Dimmed",
+    "php-cs-fixer.executablePath": "/home/hmartins/.composer/vendor/bin/php-cs-fixer",
+    "php-cs-fixer.onsave": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "php-cs-fixer.rules": "@PSR1",
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
