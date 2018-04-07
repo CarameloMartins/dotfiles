@@ -5,7 +5,7 @@
     "extensions.ignoreRecommendations": false,
     "workbench.startupEditor": "newUntitledFile",
     "git.enableSmartCommit": true,
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
     "editor.renderWhitespace": "boundary",
     "latex-workshop.view.pdf.viewer": "tab",
     "editor.rulers": [
