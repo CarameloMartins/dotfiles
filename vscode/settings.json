@@ -1,5 +1,6 @@
 {
     "editor.renderWhitespace": "all",
+    "editor.wordWrap": "on",
     "editor.fontSize": 11,
     "editor.formatOnType": true,
     "extensions.ignoreRecommendations": false,
