@@ -131,3 +131,12 @@ if command -v nvm > /dev/null; then
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
+# Composer
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+
+# PHPBrew
+if command -v phpbrew > /dev/null; then
+	[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+fi
+
+
