@@ -1,7 +1,6 @@
 AlanWalk.markdown-toc
 DavidAnson.vscode-markdownlint
 EditorConfig.EditorConfig
-HookyQR.beautify
 James-Yu.latex-workshop
 MehediDracula.php-namespace-resolver
 PKief.material-icon-theme
@@ -20,6 +19,7 @@ felixfbecker.php-intellisense
 felixfbecker.php-pack
 formulahendry.auto-close-tag
 hnw.vscode-auto-open-markdown-preview
+HookyQR.beautify
 ilich8086.coldfusion
 junstyle.php-cs-fixer
 marcostazi.VS-code-vagrantfile
@@ -27,6 +27,7 @@ ms-python.python
 neilbrayfield.php-docblocker
 onecentlin.laravel-blade
 shd101wyy.markdown-preview-enhanced
+streetsidesoftware.code-spell-checker
 waderyan.gitblame
 wayou.vscode-todo-highlight
 yzane.markdown-pdf
