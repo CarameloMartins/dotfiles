@@ -139,4 +139,7 @@ if command -v phpbrew > /dev/null; then
 	[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 fi
 
-
+# pyenv
+export PATH="/home/hmartins/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
