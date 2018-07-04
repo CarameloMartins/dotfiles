@@ -1,23 +1,18 @@
 {
     "editor.renderWhitespace": "all",
-    "editor.wordWrap": "on",
     "editor.fontSize": 11,
     "editor.formatOnType": true,
     "extensions.ignoreRecommendations": false,
     "workbench.startupEditor": "newUntitledFile",
     "git.enableSmartCommit": true,
     "window.zoomLevel": 0,
-    "editor.renderWhitespace": "boundary",
     "latex-workshop.view.pdf.viewer": "tab",
     "editor.rulers": [
         80,
         120
     ],
     "workbench.colorTheme": "Monokai Dimmed",
-    "php-cs-fixer.executablePath": "/home/hmartins/.composer/vendor/bin/php-cs-fixer",
-    "php-cs-fixer.onsave": true,
     "workbench.iconTheme": "material-icon-theme",
-    "php-cs-fixer.rules": "@PSR1",
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -28,5 +23,18 @@
         "suppressResultsExplorerNotice": false,
         "suppressShowKeyBindingsNotice": true
     },
-    "latex-workshop.message.update.show": false
+    "phpcs.standard": "PSR2",
+    "phpcs.executablePath": "/home/hmartins/.composer/vendor/bin/phpcs",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Args": [
+        "--ignore=E501,D400"
+    ],
+    "python.formatting.autopep8Args": [
+        "--max-line-length 100"
+    ],
+    "gitlens.historyExplorer.enabled": true,
+    "git.confirmSync": false,
+    "editor.formatOnSave": true,
+    "explorer.confirmDragAndDrop": false,
 }
