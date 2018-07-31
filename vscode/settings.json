@@ -1,16 +1,18 @@
 {
     "editor.renderWhitespace": "all",
-    "editor.fontSize": 11,
+    "editor.fontSize": 12,
     "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.rulers": [
+        80,
+        100,
+        120
+    ],
     "extensions.ignoreRecommendations": false,
     "workbench.startupEditor": "newUntitledFile",
     "git.enableSmartCommit": true,
     "window.zoomLevel": 0,
     "latex-workshop.view.pdf.viewer": "tab",
-    "editor.rulers": [
-        80,
-        120
-    ],
     "workbench.colorTheme": "Monokai Dimmed",
     "workbench.iconTheme": "material-icon-theme",
     "gitlens.advanced.messages": {
@@ -25,13 +27,11 @@
     },
     "phpcs.standard": "PSR2",
     "phpcs.executablePath": "/home/hmartins/.composer/vendor/bin/phpcs",
-    "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Args": [
-        "--ignore=E501,D400"
-    ],
     "python.formatting.autopep8Args": [
-        "--max-line-length 100"
+        "--max-line-length", "100"
+    ],
+    "python.linting.pylintArgs": [
+        "--ignored-classes", "responses"
     ],
     "gitlens.historyExplorer.enabled": true,
     "git.confirmSync": false,
