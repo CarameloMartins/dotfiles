@@ -143,3 +143,8 @@ fi
 export PATH="/home/hmartins/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# go
+export PATH=$PATH:/home/hmartins/.go/bin
+export GOPATH=/home/hmartins/go
+export PATH=$PATH:/home/hmartins/go/bin
