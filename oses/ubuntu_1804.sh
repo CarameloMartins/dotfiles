@@ -54,10 +54,7 @@ mv phpbrew /usr/local/bin/phpbrew
 rm composer-setup.php
 
 # Go
-wget -q https://storage.googleapis.com/golang/getgo/installer_linux
-chmod +x installer_linux
-./installer_linux
-rm installer_linux
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
 go get github.com/gopasspw/gopass
 
