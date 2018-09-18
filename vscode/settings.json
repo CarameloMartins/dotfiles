@@ -33,6 +33,7 @@
     "python.linting.pylintArgs": [
         "--ignored-classes", "responses"
     ],
+    "python.linting.pydocstyleEnabled": true,
     "gitlens.historyExplorer.enabled": true,
     "git.confirmSync": false,
     "editor.formatOnSave": true,
