@@ -54,7 +54,10 @@ mv phpbrew /usr/local/bin/phpbrew
 rm composer-setup.php
 
 # Go
-bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+git clone https://github.com/syndbg/goenv.git ~/.goenv
+echo 'export GOENV_ROOT="$HOME/.goenv"' >> ~/.bashrc
+echo 'export PATH="$GOENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(goenv init -)"' >> ~/.bashrc
 
 go get github.com/gopasspw/gopass
 
