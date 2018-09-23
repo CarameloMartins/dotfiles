@@ -1,6 +1,5 @@
 {
     "editor.renderWhitespace": "all",
-    "editor.fontSize": 12,
     "editor.formatOnType": true,
     "editor.formatOnPaste": true,
     "editor.rulers": [
@@ -13,7 +12,7 @@
     "git.enableSmartCommit": true,
     "window.zoomLevel": 0,
     "latex-workshop.view.pdf.viewer": "tab",
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Monokai",
     "workbench.iconTheme": "material-icon-theme",
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
@@ -37,4 +36,9 @@
     "git.confirmSync": false,
     "editor.formatOnSave": true,
     "explorer.confirmDragAndDrop": false,
+    "editor.fontSize": 11,
+    "[latex]": {
+        "editor.fontSize": 14,
+        "editor.wordWrap": "on"
+    }
 }
