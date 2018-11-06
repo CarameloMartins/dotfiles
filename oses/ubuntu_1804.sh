@@ -68,7 +68,7 @@ apt install postgresql-client
 apt install docker-ce
 
 # Appearance
-apt install adwaita-icon-theme-full
+apt install adwaita-icon-theme-full gnome-shell-extensions gnome-tweaks
 
 # Docker Compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
