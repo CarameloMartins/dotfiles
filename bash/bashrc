@@ -118,7 +118,7 @@ fi
 
 # tmux as default
 if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux attach
 fi
 
 # PS1
@@ -140,9 +140,10 @@ if command -v phpbrew > /dev/null; then
 fi
 
 # pyenv
-export PATH="/home/hmartins/.pyenv/bin:$PATH"
+export PATH="~/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
 
 # go
 export GOENV_ROOT="$HOME/.goenv"
