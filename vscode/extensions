@@ -13,7 +13,6 @@ esbenp.prettier-vscode
 felixfbecker.php-debug
 felixfbecker.php-intellisense
 felixfbecker.php-pack
-formulahendry.auto-close-tag
 hnw.vscode-auto-open-markdown-preview
 HookyQR.beautify
 ikappas.phpcs
@@ -26,7 +25,6 @@ ms-python.python
 neilbrayfield.php-docblocker
 PeterJausovec.vscode-docker
 PKief.material-icon-theme
-shd101wyy.markdown-preview-enhanced
 wayou.vscode-todo-highlight
 wholroyd.HCL
 yzane.markdown-pdf
