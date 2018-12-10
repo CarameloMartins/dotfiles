@@ -68,7 +68,14 @@ apt install postgresql-client
 apt install docker-ce
 
 # Appearance
-apt install adwaita-icon-theme-full gnome-shell-extensions gnome-tweaks
+apt install adwaita-icon-theme-full gnome-shell-extensions gnome-tweaks gir1.2-gtop-2.0 gir1.2-networkmanager-1.0  gir1.2-clutter-1.0
+
+git clone git://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git
+cd gnome-shell-system-monitor-applet
+make install
+cd ..
+rm -r gnome-shell-system-monitor-applet
+
 
 # Docker Compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
