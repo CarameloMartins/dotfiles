@@ -27,10 +27,7 @@
     "phpcs.standard": "PSR2",
     "phpcs.executablePath": "/home/hmartins/.composer/vendor/bin/phpcs",
     "python.formatting.autopep8Args": [
-        "--max-line-length", "100"
-    ],
-    "python.linting.pylintArgs": [
-        "--ignored-classes", "responses"
+        "--max-line-length", "120"
     ],
     "python.linting.pydocstyleEnabled": true,
     "gitlens.historyExplorer.enabled": true,
@@ -50,8 +47,8 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "--shell-escape",
                 "-pdf",
+                "--shell-escape",
                 "%DOC%"
             ]
         },
@@ -62,6 +59,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
+                "-shell-escape",
                 "%DOC%"
             ]
         },
@@ -73,4 +71,9 @@
             ]
         }
     ],
+    "files.watcherExclude": {
+        "**/.tox/**": true,
+        "**/build/**": true,
+        "**/dist/**": true
+    },
 }
