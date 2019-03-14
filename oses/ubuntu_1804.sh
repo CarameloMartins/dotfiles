@@ -27,7 +27,7 @@ sudo add-apt-repository ppa:linrunner/tlp
 apt update
 
 # Software
-apt install ubuntu-restricted-extras git tmux apt-transport-https ca-certificates curl software-properties-common spotify-client  unzip vim texlive-full typora openconnect subversion xclip pandoc tlp tlp-rdw
+apt install ubuntu-restricted-extras git tmux apt-transport-https ca-certificates curl software-properties-common spotify-client  unzip vim texlive-full typora openconnect subversion xclip pandoc tlp tlp-rdw powertop
 
 # Development Tools
 apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev jq httpie
