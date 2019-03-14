@@ -22,11 +22,12 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 sudo add-apt-repository 'deb https://typora.io/linux ./'
+sudo add-apt-repository ppa:linrunner/tlp
 
 apt update
 
 # Software
-apt install ubuntu-restricted-extras git tmux apt-transport-https ca-certificates curl software-properties-common spotify-client  unzip vim texlive-full typora openconnect subversion xclip pandoc
+apt install ubuntu-restricted-extras git tmux apt-transport-https ca-certificates curl software-properties-common spotify-client  unzip vim texlive-full typora openconnect subversion xclip pandoc tlp tlp-rdw
 
 # Development Tools
 apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev jq httpie
