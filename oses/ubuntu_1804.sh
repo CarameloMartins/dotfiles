@@ -27,7 +27,7 @@ sudo add-apt-repository ppa:linrunner/tlp
 apt update
 
 # Software
-apt install ubuntu-restricted-extras git tmux apt-transport-https ca-certificates curl software-properties-common spotify-client  unzip vim texlive-full typora openconnect subversion xclip pandoc tlp tlp-rdw powertop
+apt install ubuntu-restricted-extras git tmux apt-transport-https ca-certificates curl software-properties-common spotify-client  unzip vim texlive-full typora openconnect subversion xclip pandoc tlp tlp-rdw powertop htop
 
 # Development Tools
 apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev jq httpie
@@ -37,10 +37,7 @@ apt install python3 python-pip python3-pip tox
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
 # Node
-bash nodesource_setup.sh
 apt install nodejs
-rm nodesource_setup.sh
-
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
 bash install_nvm.sh
 rm install_nvm.sh
@@ -53,14 +50,6 @@ curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
 chmod +x phpbrew
 mv phpbrew /usr/local/bin/phpbrew
 rm composer-setup.php
-
-# Go
-git clone https://github.com/syndbg/goenv.git ~/.goenv
-echo 'export GOENV_ROOT="$HOME/.goenv"' >> ~/.bashrc
-echo 'export PATH="$GOENV_ROOT/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(goenv init -)"' >> ~/.bashrc
-
-go get github.com/gopasspw/gopass
 
 # Databases
 apt install postgresql-client
