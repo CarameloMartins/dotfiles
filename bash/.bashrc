@@ -118,7 +118,7 @@ fi
 
 # tmux as default
 if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux attach
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux new
 fi
 
 # PS1
@@ -143,9 +143,3 @@ fi
 export PATH="~/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-
-# go
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
