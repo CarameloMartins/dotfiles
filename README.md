@@ -6,6 +6,7 @@ configurations and bootstrap scripts.
 ## Instructions
 
 - `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set at the system or local level, with `--system` or `--local` flags.
+- Install extensions with `cat vscode/extensions | xargs -L1 code --install-extensions`.
 
 ## Resources
 
