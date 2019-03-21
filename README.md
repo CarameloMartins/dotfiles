@@ -5,7 +5,7 @@ configurations and bootstrap scripts.
 
 ## Instructions
 
-- `git' - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set at the system or local level, with `--system` or `--local` flags.
+- `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set at the system or local level, with `--system` or `--local` flags.
 
 ## Resources
 
