@@ -1,9 +1,13 @@
 [color]
-	ui = auto
+    ui = auto
 
 [push]
-	default = matching
+    default = matching
 
 [core]
-	editor = vim
-	excludesfile = ~/.gitignore
+    editor = vim
+    excludesfile = ~/.gitignore
+
+[alias]
+    prb = remote update origin --prune
+    last = log -1 HEAD

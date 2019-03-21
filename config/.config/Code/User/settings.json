@@ -12,7 +12,6 @@
     "git.enableSmartCommit": true,
     "window.zoomLevel": 0,
     "latex-workshop.view.pdf.viewer": "tab",
-    "workbench.colorTheme": "Monokai",
     "workbench.iconTheme": "material-icon-theme",
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
@@ -76,4 +75,9 @@
         "**/build/**": true,
         "**/dist/**": true
     },
+    "puppet.installDirectory": "/opt/puppetlabs/pdk",
+    "puppet.installType": "pdk",
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+    "php-cs-fixer.lastDownload": 1550229514151,
+    "workbench.colorTheme": "Monokai",
 }
