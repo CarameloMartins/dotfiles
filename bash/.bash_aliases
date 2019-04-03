@@ -32,3 +32,6 @@ alias update="sudo apt update && sudo apt upgrade"
 alias df='df -H'
 alias du='du -ch'
 alias top='htop'
+
+# Tmux
+alias tkill='tmux kill-server'
