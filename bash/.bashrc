@@ -137,11 +137,9 @@ fi
 export PS1="\[\e[33m\]\u \[\e[97m\]at \[\e[32m\]\h \[\e[97m\]in \[\e[34m\]\w \[\e[97m\]\n$ "
 
 # nvm
-if command -v nvm > /dev/null; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"

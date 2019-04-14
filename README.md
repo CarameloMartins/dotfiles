@@ -12,6 +12,8 @@ configurations and bootstrap scripts.
     - Arc Dark Theme
     - Papirus Icon Theme
     - Dash to Dock
+    - Shell:
+      - Theme: Custom Solarized with White Text
 
 ## Resources
 
