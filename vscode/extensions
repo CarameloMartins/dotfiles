@@ -6,6 +6,7 @@ christian-kohler.path-intellisense
 DavidAnson.vscode-markdownlint
 dbaeumer.vscode-eslint
 donjayamanne.githistory
+dracula-theme.theme-dracula
 eamodio.gitlens
 EditorConfig.EditorConfig
 eg2.vscode-npm-script
@@ -21,11 +22,12 @@ James-Yu.latex-workshop
 jpogran.puppet-vscode
 junstyle.php-cs-fixer
 marcostazi.VS-code-vagrantfile
+mauve.terraform
 MehediDracula.php-namespace-resolver
 ms-python.python
 neilbrayfield.php-docblocker
 PeterJausovec.vscode-docker
-PKief.material-icon-theme
+vscode-icons-team.vscode-icons
 wayou.vscode-todo-highlight
 wholroyd.HCL
 yzane.markdown-pdf
