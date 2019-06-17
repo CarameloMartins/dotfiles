@@ -12,7 +12,7 @@
     "git.enableSmartCommit": true,
     "window.zoomLevel": 0,
     "latex-workshop.view.pdf.viewer": "tab",
-    "workbench.iconTheme": null,
+    "workbench.iconTheme": "material-icon-theme",
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -79,5 +79,5 @@
     "puppet.installType": "pdk",
     "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
     "php-cs-fixer.lastDownload": 1550229514151,
-    "workbench.colorTheme": "Dracula Soft",
+    "workbench.colorTheme": "Dracula Soft"
 }
