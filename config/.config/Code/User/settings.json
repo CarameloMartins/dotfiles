@@ -78,6 +78,6 @@
     "puppet.installDirectory": "/opt/puppetlabs/pdk",
     "puppet.installType": "pdk",
     "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
-    "php-cs-fixer.lastDownload": 1550229514151,
+    "php-cs-fixer.lastDownload": 1562088922773,
     "workbench.colorTheme": "Dracula Soft"
 }

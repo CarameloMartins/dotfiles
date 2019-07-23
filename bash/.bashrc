@@ -153,3 +153,8 @@ fi
 export PATH="~/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+[[ -s "/home/hmartins/.gvm/scripts/gvm" ]] && source "/home/hmartins/.gvm/scripts/gvm"
+
+# gvm
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
