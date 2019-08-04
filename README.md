@@ -14,6 +14,8 @@ configurations and bootstrap scripts.
     - Dash to Dock
     - Shell:
       - Theme: Custom Solarized with White Text
+- Run `os/setup.sh`.
+
 
 ## Resources
 

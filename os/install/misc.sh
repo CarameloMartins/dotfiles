@@ -33,3 +33,26 @@ install_package xclip
 install_package pandoc 
 install_package powertop 
 install_package htop
+
+#
+# zoom
+#
+
+if command -v zoom > /dev/null; then
+    echo "Installing zoom..."
+    wget -O ~/Downloads/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
+    cd ~/Downloads
+    dpkg -i zoom.deb
+    rm ~/Downloads/zoom.deb
+fi
+
+#
+# peek
+#
+
+if command -v peek > /dev/null; then
+    echo "Installing peek..."
+    add-apt-repository ppa:peek-developers/stable
+    apt update
+    apt install -y peek
+fi

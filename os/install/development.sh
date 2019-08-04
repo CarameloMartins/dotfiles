@@ -59,3 +59,43 @@ if ! command -v code > /dev/null; then
     dpkg -i ~/Downloads/code.deb
     rm ~/Downloads/code.deb
 fi
+
+#
+# k9s
+#
+
+if ! command -v k9s > /dev/null; then
+    echo "Installing k9s..."
+    curl -L https://github.com/derailed/k9s/releases/download/0.7.13/k9s_0.7.13_Linux_x86_64.tar.gz -o ~/Downloads/k9s.tar.gz
+    
+    cd ~/Downloads
+    tar -zxvf ~/Downloads/k9s.tar.gz
+    mv ~/Downloads/k9s /usr/local/bin/k9s
+    sudo chmod +x /usr/local/bin/k9s
+
+    rm ~/Downloads/k9s.tar.gz
+    rm ~/Downloads/LICENSE
+    rm ~/Downloads/README.md
+fi
+
+#
+# kubectl
+#
+
+if ! command -v kubectl > /dev/null; then
+    echo "Installing kubectl..."
+    apt-get update && sudo apt-get install -y apt-transport-https
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    apt-get update
+    apt-get install -y kubectl
+fi
+
+#
+# gvm
+#
+
+if ! command -v gvm > /dev/null; then
+    echo "Installing gvm..."
+    bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+fi
