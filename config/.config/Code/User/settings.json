@@ -79,5 +79,6 @@
     "puppet.installType": "pdk",
     "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
     "php-cs-fixer.lastDownload": 1562088922773,
-    "workbench.colorTheme": "Dracula Soft"
+    "workbench.colorTheme": "Dracula Soft",
+    "vsicons.dontShowNewVersionMessage": true
 }
