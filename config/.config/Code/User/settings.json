@@ -26,10 +26,10 @@
     "phpcs.standard": "PSR2",
     "phpcs.executablePath": "/home/hmartins/.composer/vendor/bin/phpcs",
     "python.formatting.autopep8Args": [
-        "--max-line-length", "120"
+        "--max-line-length",
+        "120"
     ],
     "python.linting.pydocstyleEnabled": true,
-    "gitlens.historyExplorer.enabled": true,
     "git.confirmSync": false,
     "editor.formatOnSave": true,
     "explorer.confirmDragAndDrop": false,
@@ -39,7 +39,8 @@
         "editor.wordWrap": "on"
     },
     "breadcrumbs.enabled": true,
-    "latex-workshop.latex.tools": [{
+    "latex-workshop.latex.tools": [
+        {
             "name": "latexmk",
             "command": "latexmk",
             "args": [
@@ -80,5 +81,11 @@
     "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
     "php-cs-fixer.lastDownload": 1562088922773,
     "workbench.colorTheme": "Dracula Soft",
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "go.goroot": "/home/hmartins/.gvm/gos/go1.12.7",
+    "go.gopath": "/home/hmartins/.gvm/pkgsets/go1.12.7/global",
+    "go.buildOnSave": "off",
+    "go.coverOnTestPackage": false,
+    "go.lintOnSave": "file",
+    "go.vetOnSave": "off"
 }
