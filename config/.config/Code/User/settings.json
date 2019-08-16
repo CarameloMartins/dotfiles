@@ -84,8 +84,8 @@
     "vsicons.dontShowNewVersionMessage": true,
     "go.goroot": "/home/hmartins/.gvm/gos/go1.12.7",
     "go.gopath": "/home/hmartins/.gvm/pkgsets/go1.12.7/global",
-    "go.buildOnSave": "off",
+    "go.buildOnSave": "package",
     "go.coverOnTestPackage": false,
-    "go.lintOnSave": "file",
-    "go.vetOnSave": "off"
+    "go.lintOnSave": "package",
+    "go.vetOnSave": "package"
 }

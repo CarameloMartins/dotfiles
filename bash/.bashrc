@@ -158,3 +158,6 @@ eval "$(pyenv virtualenv-init -)"
 
 # gvm
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+# tfenv
+export PATH="$HOME/.tfenv/bin:$PATH"
