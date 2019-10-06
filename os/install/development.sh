@@ -32,7 +32,7 @@ if ! command -v phpbrew > /dev/null; then
     echo "Installing phpbrew..."
     curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
     chmod +x phpbrew
-    mv phpbrew /usr/local/bin/phpbrew
+    sudo mv phpbrew /usr/local/bin/phpbrew
     rm composer-setup.php
 fi
 
@@ -70,7 +70,7 @@ if ! command -v k9s > /dev/null; then
     
     cd ~/Downloads
     tar -zxvf ~/Downloads/k9s.tar.gz
-    mv ~/Downloads/k9s /usr/local/bin/k9s
+    sudo mv ~/Downloads/k9s /usr/local/bin/k9s
     sudo chmod +x /usr/local/bin/k9s
 
     rm ~/Downloads/k9s.tar.gz
@@ -84,11 +84,11 @@ fi
 
 if ! command -v kubectl > /dev/null; then
     echo "Installing kubectl..."
-    apt-get update && sudo apt-get install -y apt-transport-https
+    sudo apt-get update && sudo apt-get install -y apt-transport-https
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-    apt-get update
-    apt-get install -y kubectl
+    sudo apt-get -qq update
+    sudo apt-get -qq install -y kubectl
 fi
 
 #
@@ -98,4 +98,13 @@ fi
 if ! command -v gvm > /dev/null; then
     echo "Installing gvm..."
     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+fi
+
+#
+# tfenv
+#
+
+if ! command -v tfenv > /dev/null; then
+    echo "Installing tfenv..."
+    git clone https://github.com/tfutils/tfenv.git ~/.tfenv
 fi

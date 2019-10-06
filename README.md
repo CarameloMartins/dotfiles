@@ -16,7 +16,6 @@ configurations and bootstrap scripts.
       - Theme: Custom Solarized with White Text
 - Run `os/setup.sh`.
 
-
 ## Resources
 
 [dotfiles.github.com](http://dotfiles.github.com) and all the contributors referenced

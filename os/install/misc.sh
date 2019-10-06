@@ -53,6 +53,14 @@ fi
 if command -v peek > /dev/null; then
     echo "Installing peek..."
     add-apt-repository ppa:peek-developers/stable
-    apt update
-    apt install -y peek
+    sudo apt update
+    sudo apt install -y peek
+fi
+
+#
+# keybase
+#
+if command -v keybase > /dev/null; then
+    curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+    sudo apt install ./keybase_amd64.deb
 fi

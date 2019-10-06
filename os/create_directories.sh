@@ -4,4 +4,4 @@
 
 echo "Creating new directories in $HOME..."
 
-mk_dir ~/Projects/
+mk_dir ~/Dev/
