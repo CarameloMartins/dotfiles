@@ -84,9 +84,12 @@
     "vsicons.dontShowNewVersionMessage": true,
     "go.goroot": "/home/hmartins/.gvm/gos/go1.12.7",
     "go.gopath": "/home/hmartins/.gvm/pkgsets/go1.12.7/global",
-    "go.buildOnSave": "package",
+    "go.buildOnSave": "off",
     "go.coverOnTestPackage": false,
-    "go.lintOnSave": "off",
+    "go.lintOnSave": "file",
     "go.vetOnSave": "package",
-    "go.lintTool": "golangci-lint"
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": [
+        "--fast"
+    ]
 }
