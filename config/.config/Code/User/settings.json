@@ -29,7 +29,6 @@
         "--max-line-length",
         "120"
     ],
-    "python.linting.pydocstyleEnabled": true,
     "git.confirmSync": false,
     "editor.formatOnSave": true,
     "explorer.confirmDragAndDrop": false,
@@ -91,5 +90,25 @@
     "go.lintTool": "golangci-lint",
     "go.lintFlags": [
         "--fast"
-    ]
+    ],
+    "python.analysis.cachingLevel": "Library",
+    "python.autoComplete.addBrackets": true,
+    "python.autoUpdateLanguageServer": false,
+    "python.dataScience.allowImportFromNotebook": false,
+    "python.dataScience.addGotoCodeLenses": false,
+    "python.dataScience.allowLiveShare": false,
+    "python.dataScience.askForKernelRestart": false,
+    "python.dataScience.askForLargeDataFrames": false,
+    "python.dataScience.changeDirOnImportExport": false,
+    "python.dataScience.collapseCellInputCodeByDefault": false,
+    "python.dataScience.colorizeInputBox": false,
+    "python.dataScience.debugJustMyCode": false,
+    "python.dataScience.decorateCells": false,
+    "python.dataScience.enableAutoMoveToNextCell": false,
+    "python.dataScience.enabled": false,
+    "python.dataScience.enableCellCodeLens": false,
+    "python.dataScience.enablePlotViewer": false,
+    "python.experiments.enabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.autopep8Path": "/home/hmartins/.pyenv/versions/3.7.0/bin/autopep8"
 }
