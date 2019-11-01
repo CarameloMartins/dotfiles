@@ -5,16 +5,15 @@ configurations and bootstrap scripts.
 
 ## Instructions
 
-- `stow` each of the directories, except `oses`, and it will and `stow` will do its magic.
+- Run `dotfiles.sh`.
 - `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set at the system or local level, with `--system` or `--local` flags.
-- Install extensions with `cat vscode/extensions | xargs -L1 code --install-extensions`.
+- Run `:PlugInstall` in `nvim`.
 - UI:
     - Arc Dark Theme
     - Papirus Icon Theme
     - Dash to Dock
     - Shell:
       - Theme: Custom Solarized with White Text
-- Run `os/setup.sh`.
 
 ## Resources
 
