@@ -92,11 +92,12 @@ echo "$(uname -a)"
 #
 print_section "Generating Symlinks"
 
-execute "stow bash"
-execute "stow config"
-execute "stow git"
-execute "stow ssh"
-execute "stow tmux"
+execute "stow bash/"
+execute "stow config/"
+execute "stow git/"
+execute "stow ssh/"
+execute "stow tmux/"
+execute "stow bin/ -t $HOME/.local/bin/"
 
 #
 # VSCode
