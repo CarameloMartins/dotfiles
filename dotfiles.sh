@@ -4,33 +4,6 @@
 # Utility Functionality
 #
 
-rm_file() {
-    if [ -f $1 ]; then
-        echo "Removing $1."
-        rm $1
-    else
-        echo "$1 doesn't exist."
-    fi
-}
-
-rm_dir() {
-    if [ -d $1 ]; then
-        echo "Removing $1."
-        rmdir $1
-    else
-        echo "$1 doesn't exist."
-    fi
-}
-
-mk_dir(){
-    if [ ! -d $1 ]; then
-        echo "Creating $1..."
-        mkdir $1
-    else
-        echo "$1 already exists."
-    fi
-}
-
 install_package(){
     # https://stackoverflow.com/questions/1298066/check-if-an-apt-get-package-is-installed-and-then-install-it-if-its-not-on-linu
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $1 | grep "install ok installed")
@@ -48,13 +21,8 @@ remove_package(){
     if [ "" != "$PKG_OK" ]; then
         echo "Uninstalling $1..."
         sudo apt -qq --yes remove $1
-    fi
-}
-
-git_clone(){
-    if [ ! -d $2 ]; then
-        echo "Cloning $1 into $2..."
-        git clone -q $1 $2
+    else
+        echo -e "- rm \e[1;33m$1\e[0m ✓"
     fi
 }
 
@@ -64,6 +32,10 @@ print_section() {
 
 print_subsection() {
     echo -e "\e[4;1;34m$1\e[0m"
+}
+
+print_execution() {
+    echo -e "- \e[1;33m$1\e[0m ✓"
 }
 
 execute() {   
@@ -77,11 +49,46 @@ execute() {
     echo -e "- \e[1;33m($1)\e[0m ✓"
 }
 
+rm_file() {
+    if [ -f $1 ]; then
+        execute "rm $1"
+    else
+        print_execution "rm $1"
+    fi
+}
+
+rm_dir() {
+    if [ -d $1 ]; then
+        execute "rmdir $1"
+    else
+        print_execution "rmdir $1"
+    fi
+}
+
+mk_dir(){
+    if [ ! -d $1 ]; then
+        execute "mkdir $1"
+    else
+        print_execution "mkdir $1"
+    fi
+}
+
+git_clone(){
+    if [ ! -d $2 ]; then
+        execute "git clone -q $1 $2"
+    else
+	print_execution "repo $2"
+    fi
+}
+
 #-------------------------------------------------------------------------------
 
 #
 # dotfiles.sh
 #
+if [ $EUID != 0 ]; then
+    sudo bash -c "echo \"Running script as $USER with root permissions.\""
+fi
 
 print_section "Starting dotfiles.sh..."
 
@@ -98,26 +105,6 @@ execute "stow git/"
 execute "stow ssh/"
 execute "stow tmux/"
 execute "stow bin/ -t $HOME/.local/bin/"
-
-#
-# VSCode
-#
-print_section "VSCode Extensions"
-
-uninstall=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
-install=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
-
-echo "U: $(echo "$uninstall" | grep -E "^\-[^-]" | wc -l). I: $(echo "$uninstall" | grep -E "^\+[^+]" | wc -l)."
-
-echo "$uninstall" | grep -E "^\-[^-]" | sed -e "s/-//" | while read -r line; do
-    execute "code --uninstall-extension $line"
-    ((counter++))
-done
-
-echo "$install" | grep -E "^\+[^+]" | sed -e "s/+//" | while read -r line; do
-    execute "code --install-extension $line"
-    ((counter++))
-done
 
 print_section "Installing Software"
 
@@ -161,54 +148,72 @@ install_package postgresql-client
 
 print_subsection "Development"
 
-#
-# NodeJS
-#
 if ! command -v nodejs > /dev/null; then
     curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
-    install_package nodejs
-    echo -e "- \e[1;33mnodejs\e[0m ✓"
 fi
+
+if ! command -v kubectl > /dev/null; then
+    sudo apt-get update && sudo apt-get install -y apt-transport-https
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    sudo apt-get -qq update
+fi
+
+if ! which docker > /dev/null; then
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+fi
+
+install_package nodejs
+install_package php-cli 
+install_package php-mbstring 
+install_package python3 
+install_package python-pip 
+install_package python3-pip 
+install_package tox
+install_package kubectl
+install_package neovim
+install_package docker-ce
+
+# nvm
 
 if [ ! -d ~/.nvm ] > /dev/null; then
     curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
     bash install_nvm.sh
     rm install_nvm.sh
-    echo -e "- \e[1;33mnvm\e[0m ✓"
 fi
 
-#
-# PHP
-#
-install_package php-cli 
-install_package php-mbstring 
+print_execution "nvm"
+
+# composer
 
 if ! command -v composer > /dev/null; then
     curl -sS https://getcomposer.org/installer -o composer-setup.php
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-    echo -e "- \e[1;33mcomposer\e[0m ✓"
 fi
+
+print_execution "composer"
+
+# phpbrew 
 
 if ! command -v phpbrew > /dev/null; then
     curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
     chmod +x phpbrew
     sudo mv phpbrew /usr/local/bin/phpbrew
     rm composer-setup.php
-    echo -e "- \e[1;33mphpbrew\e[0m ✓"
 fi
 
-#
-# Python
-#
-install_package python3 
-install_package python-pip 
-install_package python3-pip 
-install_package tox
+print_execution "phpbrew"
+
+# pyenv
 
 if [ ! -d ~/.pyenv ]; then
     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-    echo -e "- \e[1;33mpyenv\e[0m ✓"
 fi
+
+print_execution "pyenv"
+
+# code
 
 if ! command -v code > /dev/null; then
     curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -218,12 +223,11 @@ if ! command -v code > /dev/null; then
     curl -L https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -o ~/Downloads/code.deb
     sudo dpkg -i ~/Downloads/code.deb
     rm ~/Downloads/code.deb
-    echo -e "- \e[1;33mcode\e[0m ✓"
 fi
 
-#
+print_execution "code"
+
 # k9s
-#
 
 if ! command -v k9s > /dev/null; then
     curl -L https://github.com/derailed/k9s/releases/download/0.7.13/k9s_0.7.13_Linux_x86_64.tar.gz -o ~/Downloads/k9s.tar.gz
@@ -236,60 +240,42 @@ if ! command -v k9s > /dev/null; then
     rm ~/Downloads/k9s.tar.gz
     rm ~/Downloads/LICENSE
     rm ~/Downloads/README.md
-    echo -e "- \e[1;33mk9s\e[0m ✓"
 fi
 
-#
-# kubectl
-#
+print_execution "k9s"
 
-if ! command -v kubectl > /dev/null; then
-    sudo apt-get update && sudo apt-get install -y apt-transport-https
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-    sudo apt-get -qq update
-    sudo apt-get -qq install -y kubectl
-    echo -e "- \e[1;33mkubectl\e[0m ✓"
-fi
-
-#
 # gvm
-#
 
 if ! command -v gvm > /dev/null; then
     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 fi
 
-#
+print_execution "gvm"
+
 # tfenv
-#
 
 if ! command -v tfenv > /dev/null; then
-    echo "Installing tfenv..."
     git clone https://github.com/tfutils/tfenv.git ~/.tfenv
-    echo -e "- \e[1;33mtfenv\e[0m ✓"
 fi
 
-install_package neovim
+print_execution "tfenv"
+
+# vim-plug
 
 if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    echo -e "- \e[1;33mvim-plug\e[0m ✓"
 fi
 
-if ! which docker > /dev/null; then
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+print_execution "vim-plug"
 
-    install_package docker-ce
-    echo -e "- \e[1;33mdocker\e[0m ✓"
-fi
+# docker-compose
 
 if ! which docker-compose > /dev/null; then
     sudo curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     sudo chmod +x /usr/local/bin/docker-compose
-    echo -e "- \e[1;33mdocker-compose\e[0m ✓"
 fi
+
+print_execution "docker-compose"
 
 print_subsection "Libraries"
 
@@ -308,21 +294,26 @@ print_subsection "Miscellaneous"
 if ! which typora > /dev/null; then
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
     add-apt-repository 'deb https://typora.io/linux ./'
-    install_package typora 
 fi
 
 if ! which tlp > /dev/null; then
     add-apt-repository ppa:linrunner/tlp
-    install_package tlp 
-    install_package tlp-rdw 
 fi
 
 if ! which spotify > /dev/null; then
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
     echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-    install_package spotify-client  
 fi
 
+if ! command -v peek > /dev/null; then
+    sudo add-apt-repository ppa:peek-developers/stable
+    sudo apt update
+fi
+
+install_package tlp-rdw 
+install_package tlp 
+install_package spotify-client  
+install_package typora 
 install_package wget 
 install_package llvm  
 install_package xz-utils 
@@ -338,39 +329,29 @@ install_package xclip
 install_package pandoc 
 install_package powertop 
 install_package htop
+install_package peek
+install_package figlet
 
-#
 # zoom
-#
 
 if ! command -v zoom > /dev/null; then
-    echo "Installing zoom..."
     wget -O ~/Downloads/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
     cd ~/Downloads
     sudo dpkg -i zoom.deb
     rm ~/Downloads/zoom.deb
 fi
 
-#
-# peek
-#
+print_execution "zoom"
 
-if ! command -v peek > /dev/null; then
-    echo "Installing peek..."
-    sudo add-apt-repository ppa:peek-developers/stable
-    sudo apt update
-    sudo apt install -y peek
-fi
-
-#
 # keybase
-#
+
 if ! command -v keybase > /dev/null; then
     curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
     sudo apt install ./keybase_amd64.deb
+    rm ./keybase_amd64.deb
 fi
 
-install_package figlet
+print_execution "keybase"
 
 print_subsection "User Interface"
 
@@ -378,9 +359,9 @@ install_package gnome-shell-extensions
 install_package gnome-tweaks
 install_package arc-theme
 
-if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ]; then
-    
-    echo "Installing Gnome Shell System Monitor..."
+# gnome-shell-system-monitor-applet
+
+if [ ! -d ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com ]; then
     install_package gir1.2-gtop-2.0 
     install_package gir1.2-networkmanager-1.0  
     install_package gir1.2-clutter-1.0
@@ -392,9 +373,11 @@ if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ];
     rm -r gnome-shell-system-monitor-applet
 fi
 
-if [ ! -d ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com ]; then
-    echo "Installing Dash to Dock..."
+print_execution "gnome-shell-system-monitor-applet"
 
+# dash-to-dock
+
+if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ]; then
     git clone https://github.com/micheleg/dash-to-dock.git
     cd dash-to-dock
     make
@@ -403,10 +386,15 @@ if [ ! -d ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gm
     rm -r dash-to-dock
 fi
 
+print_execution "dash-to-dock"
+
+# papirus-icon-theme
+
 if [ ! -d /usr/share/icons/Papirus ]; then
-    echo "Installing Papirus Icons..."
     wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install.sh | sh
-fi 
+fi
+
+print_execution "papirus-icon-theme"
 
 print_subsection "Remove"
 
@@ -416,6 +404,26 @@ remove_package libreoffice*
 print_subsection "Cleanup"
 
 execute "sudo apt -qq -y autoremove"
+
+#
+#VSCode Extensions
+#
+print_section "VSCode Extensions"
+
+uninstall=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
+install=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
+
+echo "U: $(echo "$uninstall" | grep -E "^\-[^-]" | wc -l). I: $(echo "$uninstall" | grep -E "^\+[^+]" | wc -l)."
+
+echo "$uninstall" | grep -E "^\-[^-]" | sed -e "s/-//" | while read -r line; do
+    execute "code --uninstall-extension $line"
+    ((counter++))
+done
+
+echo "$install" | grep -E "^\+[^+]" | sed -e "s/+//" | while read -r line; do
+    execute "code --install-extension $line"
+    ((counter++))
+done
 
 #
 # Desktop
@@ -433,6 +441,20 @@ rm_dir ~/Templates/
 rm_dir ~/Videos/
 
 mk_dir ~/Dev/
+
+#
+# Repos
+#
+
+print_section "Clone Repos"
+
+http https://api.github.com/users/caramelomartins/repos | jq .[].ssh_url | while read -r line; do
+    name=$(echo $line | sed -e 's/"git@github.com:caramelomartins\///' | sed -e 's/.git"//')
+
+    if [ "$name" != "dotfiles" ]; then
+	git_clone $line "$HOME/Dev/$name"
+    fi
+done
 
 print_section "Finished dotfiles.sh..."
 
