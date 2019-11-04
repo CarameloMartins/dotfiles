@@ -10,9 +10,9 @@ install_package(){
     if [ "" == "$PKG_OK" ]; then
         echo "Installing $1..."
         sudo apt -qq --yes install $1
-    else
-        echo -e "- \e[1;33m$1\e[0m ✓"
     fi
+
+    echo -e "- \e[1;33m$1\e[0m ✓"
 }
 
 remove_package(){
@@ -21,9 +21,9 @@ remove_package(){
     if [ "" != "$PKG_OK" ]; then
         echo "Uninstalling $1..."
         sudo apt -qq --yes remove $1
-    else
-        echo -e "- rm \e[1;33m$1\e[0m ✓"
     fi
+
+    echo -e "- rm \e[1;33m$1\e[0m ✓"
 }
 
 print_section() {
