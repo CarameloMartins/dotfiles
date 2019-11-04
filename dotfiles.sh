@@ -456,6 +456,10 @@ http https://api.github.com/users/caramelomartins/repos | jq .[].ssh_url | while
     fi
 done
 
+print_section "Customize Workflow"
+
+execute "sudo update-alternatives --set editor /usr/bin/nvim"
+
 print_section "Finished dotfiles.sh..."
 
 figlet "Happy Hacking!"

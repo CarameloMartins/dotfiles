@@ -35,3 +35,6 @@ alias top='htop'
 
 # Tmux
 alias tkill='tmux kill-server'
+
+# nvim
+alias vim='nvim'
