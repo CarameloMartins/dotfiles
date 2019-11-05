@@ -3,6 +3,11 @@
 This repo is a collection of my dotfiles and some custom scripts along with setup
 configurations and bootstrap scripts.
 
+## Requirements
+
+- stow
+- git
+
 ## Instructions
 
 - Run `dotfiles.sh`.
