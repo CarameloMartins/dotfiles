@@ -5,6 +5,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'tpope/vim-surround'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'davidhalter/jedi-vim'
 Plug 'tweekmonster/impsort.vim'
@@ -20,7 +21,9 @@ call plug#end()
 """"""""""
 colorscheme gruvbox
 set background=dark
+
 let g:gruvbox_contrast_dark = 'hard'
+let g:airline_theme='deus'
 
 """""""""""""""""""""""
 " scrooloose/nerdtree "
