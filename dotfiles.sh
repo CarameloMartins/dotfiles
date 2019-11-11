@@ -440,7 +440,7 @@ rm_dir ~/Public/
 rm_dir ~/Templates/ 
 rm_dir ~/Videos/
 
-mk_dir ~/Dev/
+mk_dir ~/Projects/
 
 #
 # Repos
