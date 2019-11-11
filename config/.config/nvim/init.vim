@@ -43,3 +43,8 @@ set mouse=a
 set encoding=utf-8
 set colorcolumn=120
 set autoread
+set tabstop=4
+set softtabstop=0 
+set expandtab 
+set shiftwidth=4 
+set smarttab
