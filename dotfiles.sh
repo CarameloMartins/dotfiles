@@ -99,11 +99,16 @@ echo "$(uname -a)"
 #
 print_section "Generating Symlinks"
 
+execute "rm -f $HOME/.bashrc"
+execute "rm -f $HOME/.profile"
+
 execute "stow bash/"
 execute "stow config/"
 execute "stow git/"
 execute "stow ssh/"
 execute "stow tmux/"
+
+mk_dir "$HOME/.local/bin"
 execute "stow bin/ -t $HOME/.local/bin/"
 
 print_section "Installing Software"
@@ -116,6 +121,7 @@ echo "Distribution: $(lsb_release -ds)."
 
 print_subsection "Update"
 
+execute "sudo apt -y --fix-broken install"
 execute "sudo apt -qq update"
 execute "sudo apt -qq -y upgrade"
 
@@ -189,7 +195,8 @@ print_execution "nvm"
 
 if ! command -v composer > /dev/null; then
     curl -sS https://getcomposer.org/installer -o composer-setup.php
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    rm composer-setup.php
 fi
 
 print_execution "composer"
@@ -200,7 +207,6 @@ if ! command -v phpbrew > /dev/null; then
     curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
     chmod +x phpbrew
     sudo mv phpbrew /usr/local/bin/phpbrew
-    rm composer-setup.php
 fi
 
 print_execution "phpbrew"
@@ -219,6 +225,7 @@ if ! command -v code > /dev/null; then
     curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
     mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
     sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+    rm microsoft.gpg
 
     curl -L https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -o ~/Downloads/code.deb
     sudo dpkg -i ~/Downloads/code.deb
@@ -292,8 +299,9 @@ install_package liblzma-dev
 print_subsection "Miscellaneous"
 
 if ! which typora > /dev/null; then
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
-    add-apt-repository 'deb https://typora.io/linux ./'
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
+    sudo add-apt-repository 'deb https://typora.io/linux ./'
+    sudo apt update
 fi
 
 if ! which tlp > /dev/null; then
@@ -306,7 +314,7 @@ if ! which spotify > /dev/null; then
 fi
 
 if ! command -v peek > /dev/null; then
-    sudo add-apt-repository ppa:peek-developers/stable
+    sudo add-apt-repository -y ppa:peek-developers/stable
     sudo apt update
 fi
 
@@ -339,6 +347,7 @@ if ! command -v zoom > /dev/null; then
     cd ~/Downloads
     sudo dpkg -i zoom.deb
     rm ~/Downloads/zoom.deb
+    sudo apt --fix-broken install
 fi
 
 print_execution "zoom"
@@ -347,7 +356,8 @@ print_execution "zoom"
 
 if ! command -v keybase > /dev/null; then
     curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
-    sudo apt install ./keybase_amd64.deb
+    sudo apt -y install ./keybase_amd64.deb
+    sudo apt --fix-broken install
     rm ./keybase_amd64.deb
 fi
 
@@ -363,14 +373,14 @@ install_package arc-theme
 
 if [ ! -d ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com ]; then
     install_package gir1.2-gtop-2.0 
-    install_package gir1.2-networkmanager-1.0  
+    install_package gir1.2-nm-1.0  
     install_package gir1.2-clutter-1.0
 
     git clone git://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git
     cd gnome-shell-system-monitor-applet
     make install
     cd ..
-    rm -r gnome-shell-system-monitor-applet
+    sudo rm -r gnome-shell-system-monitor-applet
 fi
 
 print_execution "gnome-shell-system-monitor-applet"
@@ -378,12 +388,9 @@ print_execution "gnome-shell-system-monitor-applet"
 # dash-to-dock
 
 if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ]; then
-    git clone https://github.com/micheleg/dash-to-dock.git
-    cd dash-to-dock
-    make
-    make install
-    cd ..
-    rm -r dash-to-dock
+    curl https://extensions.gnome.org/review/download/12397.shell-extension.zip -LO
+    unzip 12397.shell-extension.zip -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/
+    rm 12397.shell-extension.zip
 fi
 
 print_execution "dash-to-dock"
@@ -450,9 +457,10 @@ print_section "Clone Repos"
 
 http https://api.github.com/users/caramelomartins/repos | jq .[].ssh_url | while read -r line; do
     name=$(echo $line | sed -e 's/"git@github.com:caramelomartins\///' | sed -e 's/.git"//')
+    line=$(echo $line | tr -d '"')
 
     if [ "$name" != "dotfiles" ]; then
-	git_clone $line "$HOME/Dev/$name"
+	    git_clone "$line" "$HOME/Projects/$name"
     fi
 done
 
