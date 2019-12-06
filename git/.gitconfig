@@ -1,3 +1,7 @@
+
+[include]
+   path = ~/.gitconfig.id ; get indetifying information from a different file.
+
 [color]
     ui = auto
 
@@ -11,3 +15,6 @@
 [alias]
     prb = remote update origin --prune
     last = log -1 HEAD
+
+[commit]
+    gpgsign = true

@@ -6,10 +6,17 @@
 
 install_package(){
     # https://stackoverflow.com/questions/1298066/check-if-an-apt-get-package-is-installed-and-then-install-it-if-its-not-on-linu
-    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $1 | grep "install ok installed")
-    if [ "" == "$PKG_OK" ]; then
-        echo "Installing $1..."
-        sudo apt -qq --yes install $1
+    if [ $(uname) == "Darwin" ]; then
+        PKG_OK=$(brew list | grep $1)
+        if [ "" == "$PKG_OK" ]; then
+            brew install $1
+        fi
+    else
+        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $1 | grep "install ok installed")
+        if [ "" == "$PKG_OK" ]; then
+            echo "Installing $1..."
+            sudo apt -qq --yes install $1
+        fi
     fi
 
     echo -e "- \e[1;33m$1\e[0m ✓"
@@ -113,7 +120,7 @@ execute "stow bin/ -t $HOME/.local/bin/"
 
 print_section "Installing Software"
 
-echo "Distribution: $(lsb_release -ds)."
+echo "Distribution: $(uname) $(uname -r)."
 
 #
 # Update
@@ -121,9 +128,13 @@ echo "Distribution: $(lsb_release -ds)."
 
 print_subsection "Update"
 
-execute "sudo apt -y --fix-broken install"
-execute "sudo apt -qq update"
-execute "sudo apt -qq -y upgrade"
+if [[ $(uname) == "Darwin" ]]; then
+    execute "brew upgrade"
+else
+    execute "sudo apt -y --fix-broken install"
+    execute "sudo apt -qq update"
+    execute "sudo apt -qq -y upgrade"
+fi
 
 #
 # Basics
@@ -131,14 +142,26 @@ execute "sudo apt -qq -y upgrade"
 
 print_subsection "Basics"
 
-install_package make 
-install_package build-essential 
-install_package curl
-install_package apt-transport-https 
-install_package ca-certificates 
-install_package software-properties-common 
-install_package ubuntu-restricted-extras 
-install_package git 
+if [[ $(uname) == "Darwin" ]]; then
+    install_package curl
+    install_package make
+    install_package bash
+    install_package coreutils
+    install_package findutils
+    install_package gawk
+    install_package gnu-sed
+    install_package gnu-tar
+    install_package gnutls
+    install_package gnupg
+else
+    install_package make 
+    install_package build-essential 
+    install_package curl
+    install_package apt-transport-https 
+    install_package ca-certificates 
+    install_package software-properties-common 
+    install_package ubuntu-restricted-extras 
+fi
 
 #
 # Databases
@@ -146,7 +169,11 @@ install_package git
 
 print_subsection "Databases"
 
-install_package postgresql-client
+if [[ $(uname) == "Darwin" ]]; then
+    install_package postgres
+else
+    install_package postgresql-client
+fi
 
 #
 # Development
@@ -154,32 +181,44 @@ install_package postgresql-client
 
 print_subsection "Development"
 
-if ! command -v nodejs > /dev/null; then
-    curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+if [[ $(uname) != "Darwin" ]]; then
+    if ! command -v nodejs > /dev/null; then
+        curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+    fi
+
+    if ! command -v kubectl > /dev/null; then
+        sudo apt-get update && sudo apt-get install -y apt-transport-https
+        curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+        echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+        sudo apt-get -qq update
+    fi
+
+    if ! which docker > /dev/null; then
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    fi
 fi
 
-if ! command -v kubectl > /dev/null; then
-    sudo apt-get update && sudo apt-get install -y apt-transport-https
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-    sudo apt-get -qq update
+if [ $(uname) == "Darwin" ]; then
+    install_package node
+    install_package php
+    install_package python
+    install_package tox
+    install_package kubernetes-cli
+    install_package neovim
+    install_package docker
+else
+    install_package nodejs
+    install_package php-cli 
+    install_package php-mbstring 
+    install_package python3 
+    install_package python-pip 
+    install_package python3-pip 
+    install_package tox
+    install_package kubectl
+    install_package neovim
+    install_package docker-ce
 fi
-
-if ! which docker > /dev/null; then
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-fi
-
-install_package nodejs
-install_package php-cli 
-install_package php-mbstring 
-install_package python3 
-install_package python-pip 
-install_package python3-pip 
-install_package tox
-install_package kubectl
-install_package neovim
-install_package docker-ce
 
 # nvm
 
@@ -221,32 +260,41 @@ print_execution "pyenv"
 
 # code
 
-if ! command -v code > /dev/null; then
-    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-    mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-    rm microsoft.gpg
+# TODO: MacOS.
 
-    curl -L https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -o ~/Downloads/code.deb
-    sudo dpkg -i ~/Downloads/code.deb
-    rm ~/Downloads/code.deb
+if [ $(uname) != "Darwin" ]; then
+    if ! command -v code > /dev/null; then
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+        rm microsoft.gpg
+
+        curl -L https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -o ~/Downloads/code.deb
+        sudo dpkg -i ~/Downloads/code.deb
+        rm ~/Downloads/code.deb
+    fi
 fi
 
 print_execution "code"
 
 # k9s
 
-if ! command -v k9s > /dev/null; then
-    curl -L https://github.com/derailed/k9s/releases/download/0.7.13/k9s_0.7.13_Linux_x86_64.tar.gz -o ~/Downloads/k9s.tar.gz
-    
-    cd ~/Downloads
-    tar -zxvf ~/Downloads/k9s.tar.gz
-    sudo mv ~/Downloads/k9s /usr/local/bin/k9s
-    sudo chmod +x /usr/local/bin/k9s
+if [ $(uname) == "Darwin" ]; then
+    # TODO: This isn't detecting k9s is already installed.
+    install_package derailed/k9s/k9s
+else
+    if ! command -v k9s > /dev/null; then
+        curl -L https://github.com/derailed/k9s/releases/download/0.7.13/k9s_0.7.13_Linux_x86_64.tar.gz -o ~/Downloads/k9s.tar.gz
+        
+        cd ~/Downloads
+        tar -zxvf ~/Downloads/k9s.tar.gz
+        sudo mv ~/Downloads/k9s /usr/local/bin/k9s
+        sudo chmod +x /usr/local/bin/k9s
 
-    rm ~/Downloads/k9s.tar.gz
-    rm ~/Downloads/LICENSE
-    rm ~/Downloads/README.md
+        rm ~/Downloads/k9s.tar.gz
+        rm ~/Downloads/LICENSE
+        rm ~/Downloads/README.md
+    fi
 fi
 
 print_execution "k9s"
@@ -261,8 +309,12 @@ print_execution "gvm"
 
 # tfenv
 
-if ! command -v tfenv > /dev/null; then
-    git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+if [ $(uname) == "Darwin" ]; then
+    install_package tfenv
+else
+    if ! command -v tfenv > /dev/null; then
+        git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+    fi
 fi
 
 print_execution "tfenv"
@@ -277,145 +329,179 @@ print_execution "vim-plug"
 
 # docker-compose
 
-if ! which docker-compose > /dev/null; then
-    sudo curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
+if [ $(uname) == "Darwin" ]; then
+    install_package docker-compose
+else
+    if ! which docker-compose > /dev/null; then
+        sudo curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+    fi
 fi
 
 print_execution "docker-compose"
 
 print_subsection "Libraries"
 
-install_package libssl-dev 
-install_package zlib1g-dev 
-install_package libbz2-dev 
-install_package libreadline-dev 
-install_package libsqlite3-dev 
-install_package libncurses5-dev 
-install_package libncursesw5-dev 
-install_package libffi-dev 
-install_package liblzma-dev
+if [ $(uname) == "Darwin" ]; then
+    install_package libyaml
+else   
+    install_package libssl-dev 
+    install_package zlib1g-dev 
+    install_package libbz2-dev 
+    install_package libreadline-dev 
+    install_package libsqlite3-dev 
+    install_package libncurses5-dev 
+    install_package libncursesw5-dev 
+    install_package libffi-dev 
+    install_package liblzma-dev
+fi
 
 print_subsection "Miscellaneous"
 
-if ! which typora > /dev/null; then
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
-    sudo add-apt-repository 'deb https://typora.io/linux ./'
-    sudo apt update
+if [ $(uname) != "Darwin" ]; then
+    if ! which typora > /dev/null; then
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
+        sudo add-apt-repository 'deb https://typora.io/linux ./'
+        sudo apt update
+    fi
+
+    if ! which tlp > /dev/null; then
+        add-apt-repository ppa:linrunner/tlp
+    fi
+
+    if ! which spotify > /dev/null; then
+        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+        echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+    fi
+
+    if ! command -v peek > /dev/null; then
+        sudo add-apt-repository -y ppa:peek-developers/stable
+        sudo apt update
+    fi
 fi
 
-if ! which tlp > /dev/null; then
-    add-apt-repository ppa:linrunner/tlp
-fi
+# TODO Spotify for MacOS
 
-if ! which spotify > /dev/null; then
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
-    echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-fi
-
-if ! command -v peek > /dev/null; then
-    sudo add-apt-repository -y ppa:peek-developers/stable
-    sudo apt update
-fi
-
-install_package tlp-rdw 
-install_package tlp 
-install_package spotify-client  
-install_package typora 
-install_package wget 
-install_package llvm  
-install_package xz-utils 
 install_package jq 
 install_package httpie  
 install_package tmux 
 install_package unzip 
-install_package vim 
-install_package texlive-full 
-install_package openconnect 
-install_package subversion 
-install_package xclip 
 install_package pandoc 
-install_package powertop 
 install_package htop
-install_package peek
 install_package figlet
+
+if [ $(uname) != "Darwin" ]; then
+    install_package xclip 
+    install_package typora 
+    install_package tlp-rdw 
+    install_package tlp 
+    install_package spotify-client  
+    install_package wget 
+    install_package llvm  
+    install_package xz-utils 
+    install_package texlive-full 
+    install_package powertop 
+    install_package peek
+fi
 
 # zoom
 
-if ! command -v zoom > /dev/null; then
-    wget -O ~/Downloads/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
-    cd ~/Downloads
-    sudo dpkg -i zoom.deb
-    rm ~/Downloads/zoom.deb
-    sudo apt --fix-broken install
+if [ $(uname) != "Darwin" ]; then
+    if ! command -v zoom > /dev/null; then
+        wget -O ~/Downloads/zoom.deb https://zoom.us/client/latest/zoom_amd64.deb
+        cd ~/Downloads
+        sudo dpkg -i zoom.deb
+        rm ~/Downloads/zoom.deb
+        sudo apt --fix-broken install
+    fi
 fi
 
 print_execution "zoom"
 
 # keybase
 
-if ! command -v keybase > /dev/null; then
-    curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
-    sudo apt -y install ./keybase_amd64.deb
-    sudo apt --fix-broken install
-    rm ./keybase_amd64.deb
+# TODO: MacOS
+
+if [ $(uname) != "Darwin" ]; then
+    if ! command -v keybase > /dev/null; then
+        curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+        sudo apt -y install ./keybase_amd64.deb
+        sudo apt --fix-broken install
+        rm ./keybase_amd64.deb
+    fi
 fi
 
 print_execution "keybase"
 
 print_subsection "User Interface"
 
-install_package gnome-shell-extensions
-install_package gnome-tweaks
-install_package arc-theme
+if [ $(uname) != "Darwin" ]; then
+    install_package gnome-shell-extensions
+    install_package gnome-tweaks
+    install_package arc-theme
 
-# gnome-shell-system-monitor-applet
+    # gnome-shell-system-monitor-applet
 
-if [ ! -d ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com ]; then
-    install_package gir1.2-gtop-2.0 
-    install_package gir1.2-nm-1.0  
-    install_package gir1.2-clutter-1.0
+    if [ ! -d ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com ]; then
+        install_package gir1.2-gtop-2.0 
+        install_package gir1.2-nm-1.0  
+        install_package gir1.2-clutter-1.0
 
-    git clone git://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git
-    cd gnome-shell-system-monitor-applet
-    make install
-    cd ..
-    sudo rm -r gnome-shell-system-monitor-applet
+        git clone git://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git
+        cd gnome-shell-system-monitor-applet
+        make install
+        cd ..
+        sudo rm -r gnome-shell-system-monitor-applet
+    fi
+
+    print_execution "gnome-shell-system-monitor-applet"
+
+    # dash-to-dock
+
+    if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ]; then
+        curl https://extensions.gnome.org/review/download/12397.shell-extension.zip -LO
+        unzip 12397.shell-extension.zip -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/
+        rm 12397.shell-extension.zip
+    fi
+
+    print_execution "dash-to-dock"
+
+    # papirus-icon-theme
+
+    if [ ! -d /usr/share/icons/Papirus ]; then
+        wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install.sh | sh
+    fi
+
+    print_execution "papirus-icon-theme"
+else
+    echo "- Nothing for MacOS for now."
 fi
-
-print_execution "gnome-shell-system-monitor-applet"
-
-# dash-to-dock
-
-if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ]; then
-    curl https://extensions.gnome.org/review/download/12397.shell-extension.zip -LO
-    unzip 12397.shell-extension.zip -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/
-    rm 12397.shell-extension.zip
-fi
-
-print_execution "dash-to-dock"
-
-# papirus-icon-theme
-
-if [ ! -d /usr/share/icons/Papirus ]; then
-    wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install.sh | sh
-fi
-
-print_execution "papirus-icon-theme"
 
 print_subsection "Remove"
 
-remove_package thunderbird*
-remove_package libreoffice*
+if [[ $(uname) == "Darwin" ]]; then
+    # TODO Automate removal of apps in MacOs.
+    echo "- Please remove whatever you wish manually!"
+else
+    remove_package thunderbird*
+    remove_package libreoffice*
+fi
 
 print_subsection "Cleanup"
 
-execute "sudo apt -qq -y autoremove"
+if [[ $(uname) == "Darwin" ]]; then
+    execute "brew cleanup"
+else
+    execute "sudo apt -qq -y autoremove"
+fi
 
 #
-#VSCode Extensions
+# VSCode Extensions
 #
+
 print_section "VSCode Extensions"
+
+# TODO: In Mac OS, you need to add the `code` command to shell from within VS Code itself.
 
 uninstall=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
 install=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
@@ -438,14 +524,16 @@ done
 
 print_section "Customizing Desktop"
 
-rm_file ~/examples.desktop
+if [[ $(uname) != "Darwin" ]]; then
+    rm_file ~/examples.desktop
 
-rm_dir ~/Documents/ 
-rm_dir ~/Music/ 
-rm_dir ~/Pictures/ 
-rm_dir ~/Public/ 
-rm_dir ~/Templates/ 
-rm_dir ~/Videos/
+    rm_dir ~/Documents/ 
+    rm_dir ~/Music/ 
+    rm_dir ~/Pictures/ 
+    rm_dir ~/Public/ 
+    rm_dir ~/Templates/ 
+    rm_dir ~/Videos/
+fi
 
 mk_dir ~/Projects/
 
@@ -455,18 +543,24 @@ mk_dir ~/Projects/
 
 print_section "Clone Repos"
 
-http https://api.github.com/users/caramelomartins/repos | jq .[].ssh_url | while read -r line; do
-    name=$(echo $line | sed -e 's/"git@github.com:caramelomartins\///' | sed -e 's/.git"//')
-    line=$(echo $line | tr -d '"')
+if [[ $(uname) != "Darwin" ]]; then
+    http https://api.github.com/users/caramelomartins/repos | jq .[].ssh_url | while read -r line; do
+        name=$(echo $line | sed -e 's/"git@github.com:caramelomartins\///' | sed -e 's/.git"//')
+        line=$(echo $line | tr -d '"')
 
-    if [ "$name" != "dotfiles" ]; then
-	    git_clone "$line" "$HOME/Projects/$name"
-    fi
-done
+        if [ "$name" != "dotfiles" ]; then
+            git_clone "$line" "$HOME/Projects/$name"
+        fi
+    done
+else
+    echo "- Not cloning repos to MacOS for now."
+fi
 
 print_section "Customize Workflow"
 
-execute "sudo update-alternatives --set editor /usr/bin/nvim"
+if [[ $(uname) != "Darwin" ]]; then
+    execute "sudo update-alternatives --set editor /usr/bin/nvim"
+fi
 
 print_section "Finished dotfiles.sh..."
 

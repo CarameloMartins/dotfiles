@@ -150,9 +150,9 @@ if command -v phpbrew > /dev/null; then
 fi
 
 # pyenv
-export PATH="~/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+fi
 
 [[ -s "/home/hmartins/.gvm/scripts/gvm" ]] && source "/home/hmartins/.gvm/scripts/gvm"
 

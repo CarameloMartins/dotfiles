@@ -7,13 +7,14 @@ configurations and bootstrap scripts.
 
 - stow
 - git
+- brew (on MacOS)
 
 ## Instructions
 
 - Run `dotfiles.sh`.
-- `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set at the system or local level, with `--system` or `--local` flags.
+- `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set in another file `~/.gitconfig.id` and will be included in the configuration.
 - Run `:PlugInstall` in `nvim`.
-- UI:
+- Ubuntu UI:
     - Arc Dark Theme
     - Papirus Icon Theme
     - Dash to Dock
