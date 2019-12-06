@@ -1,3 +1,5 @@
+OS=$(uname)
+
 # Juniper VPN
 alias vpn-start='vpn_start'
 alias vpn-stop='sudo kill $(pgrep openconnect)'
@@ -6,7 +8,10 @@ alias vpn-stop='sudo kill $(pgrep openconnect)'
 alias docker-clean='docker rm $(docker ps -a -q) && docker rmi $(docker images -q)'
 
 # Quirks
-alias reset-touchpad='sudo modprobe -r psmouse && sudo modprobe psmouse proto=imps'
+if [[ $OS != "Darwin" ]]; then
+    # Quick workaround for when Ubuntu's touchpad randomly stops working.
+    alias reset-touchpad='sudo modprobe -r psmouse && sudo modprobe psmouse proto=imps'
+fi
 
 # Directory Iteration
 alias ..="cd .."
@@ -15,8 +20,13 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # Listing
-alias ls="ls --color=auto"
-alias ll="ls --color -al"
+if [[ $OS == "Darwin" ]]; then
+    alias ls="ls -G"
+    alias ll="ls -G -al"
+else
+    alias ls="ls --color=auto"
+    alias ll="ls --color -al"
+fi
 
 # Security
 alias sha1='openssl sha1'
