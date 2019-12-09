@@ -19,7 +19,7 @@ install_package(){
         fi
     fi
 
-    echo -e "- \e[1;33m$1\e[0m ✓"
+    echo -e "- \033[01;33m$1\033[00m ✓"
 }
 
 remove_package(){
@@ -30,19 +30,19 @@ remove_package(){
         sudo apt -qq --yes remove $1
     fi
 
-    echo -e "- rm \e[1;33m$1\e[0m ✓"
+    echo -e "- rm \033[1;33m$1\033[0m ✓"
 }
 
 print_section() {
-    echo -e "\e[4;1;32m> $1\e[0m"
+    echo -e "\033[4;1;32m> $1\033[0m"
 }
 
 print_subsection() {
-    echo -e "\e[4;1;34m$1\e[0m"
+    echo -e "\033[4;1;34m$1\033[0m"
 }
 
 print_execution() {
-    echo -e "- \e[1;33m$1\e[0m ✓"
+    echo -e "- \033[1;33m$1\033[0m ✓"
 }
 
 execute() {   
@@ -53,7 +53,7 @@ execute() {
         exit
     fi
 
-    echo -e "- \e[1;33m($1)\e[0m ✓"
+    echo -e "- \033[1;33m($1)\033[0m ✓"
 }
 
 rm_file() {
@@ -110,10 +110,12 @@ execute "rm -f $HOME/.bashrc"
 execute "rm -f $HOME/.profile"
 
 execute "stow bash/"
+# TODO: In MacOS, VS Code should be symlinked somewhere else.
 execute "stow config/"
 execute "stow git/"
 execute "stow ssh/"
 execute "stow tmux/"
+execute "stow vim/"
 
 mk_dir "$HOME/.local/bin"
 execute "stow bin/ -t $HOME/.local/bin/"
