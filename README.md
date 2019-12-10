@@ -13,7 +13,7 @@ configurations and bootstrap scripts.
 
 - Run `dotfiles.sh`.
 - `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set in another file `~/.gitconfig.id` and will be included in the configuration.
-- Run `:PlugInstall` in `nvim`.
+- Run `vim -c "PlugInstall" -es`.
 - Ubuntu UI:
     - Arc Dark Theme
     - Papirus Icon Theme

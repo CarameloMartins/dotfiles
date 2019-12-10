@@ -14,6 +14,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-syntastic/syntastic'
+Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
@@ -40,6 +42,18 @@ autocmd FileType python setlocal completeopt-=preview
 " hashivim/vim-terraform "
 """"""""""""""""""""""""""
 let g:terraform_fmt_on_save=1
+
+""""""""""""""""""""""""""""
+" vim-syntastic/syntatistc "
+""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 """""""""""""""""""""""""
 " General Configuration "
