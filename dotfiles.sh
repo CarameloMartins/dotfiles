@@ -116,7 +116,7 @@ if [ "$OPTIONS_SYMLINK" -eq "1" ]; then
     execute "stow vim/"
 
     if [[ "$OS_NAME" == "Linux" ]]; then
-        execute "stow -t ~/.config/ vscode/ --ignore=\"extensions\""
+        execute "stow -t $HOME/.config/ vscode/ --ignore=\"extensions\""
     else
         # this is a bit of hack because I couldn't get the escaping to work properly and stow was complaining.
         APP_SUPPORT="$HOME/Library/Application Support/"
@@ -258,12 +258,11 @@ if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customize Workflow"
     
     execute "nvim +PlugInstall +qall"
-
+    source /dev/stdin <<<"$(gopass completion bash)"
+    echo -e "- \033[1;33m(gopass completion bash)\033[0m ✓"
+    
     if [[ "$OS_NAME" != "Darwin" ]]; then
         execute "sudo update-alternatives --set editor /usr/bin/nvim"
-        execute "source <(gopass completion bash)"
-    else
-        execute "source /dev/stdin <<<\"$(gopass completion bash)\""
     fi
 fi
 

@@ -16,12 +16,12 @@ install nodejs
 install peek
 install php-cli 
 install php-mbstring 
-install postgressql-client
+install postgresql-client
 install powertop 
 install python-pip 
 install python3 
 install python3-pip 
-install software-propertis-common 
+install software-properties-common 
 install spotify-client  
 install texlive-full 
 install tlp 
