@@ -41,9 +41,11 @@ install gir1.2-gtop-2.0
 install gir1.2-nm-1.0  
 install gir1.2-clutter-1.0
 
+install deb hugo https://github.com/gohugoio/hugo/releases/download/v0.60.0/hugo_0.60.0_Linux-64bit.deb
 install deb code https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 install deb zoom https://zoom.us/client/latest/zoom_amd64.deb
 install deb keybase https://prerelease.keybase.io/keybase_amd64.deb
+install deb gopass https://github.com/gopasspw/gopass/releases/download/v1.8.6/gopass-1.8.6-linux-amd64.deb
 
 install bin docker-compose "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" 
 

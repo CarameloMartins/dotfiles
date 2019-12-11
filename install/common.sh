@@ -1,5 +1,6 @@
 #!/bin/bash
 
+install awscli
 install curl
 install cloc
 install figlet
@@ -16,9 +17,12 @@ install wget
 install watch
 
 install bin phpbrew https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+
 install bash dir nvm ~/.nvm https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
 install bash dir pyenv ~/.pyenv https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
 install bash cmd gvm https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer
+
+install clone tpm https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # composer
 

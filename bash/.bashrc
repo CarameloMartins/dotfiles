@@ -179,8 +179,7 @@ export GPG_TTY=$(tty)
 # Editor
 export EDITOR=nvim
 
-
+# VS Code (code) in Terminal (MacOS only)
 if [ "$OS_NAME" = "Darwin" ]; then
-    # VS Code (code) in Terminal (MacOS only)
     export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi

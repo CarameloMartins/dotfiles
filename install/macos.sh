@@ -10,6 +10,7 @@ install gnu-sed
 install gnu-tar
 install gnupg
 install gnutls
+install gopass
 install kubernetes-cli
 install libyaml
 install node
@@ -17,6 +18,7 @@ install php
 install postgres
 install python
 install tfenv
+install hugo
 
 install cask spotify
 install cask visual-studio-code
