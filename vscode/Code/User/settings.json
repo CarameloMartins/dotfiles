@@ -1,0 +1,114 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.rulers": [
+        80,
+        100,
+        120
+    ],
+    "extensions.ignoreRecommendations": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "git.enableSmartCommit": true,
+    "window.zoomLevel": 0,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "workbench.iconTheme": "material-icon-theme",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
+    "phpcs.standard": "PSR2",
+    "phpcs.executablePath": "/home/hmartins/.composer/vendor/bin/phpcs",
+    "python.formatting.autopep8Args": [
+        "--max-line-length",
+        "120"
+    ],
+    "git.confirmSync": false,
+    "editor.formatOnSave": true,
+    "explorer.confirmDragAndDrop": false,
+    "editor.fontSize": 11,
+    "[latex]": {
+        "editor.fontSize": 14,
+        "editor.wordWrap": "on"
+    },
+    "breadcrumbs.enabled": true,
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "--shell-escape",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-shell-escape",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "files.watcherExclude": {
+        "**/.tox/**": true,
+        "**/build/**": true,
+        "**/dist/**": true
+    },
+    "puppet.installDirectory": "/opt/puppetlabs/pdk",
+    "puppet.installType": "pdk",
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+    "php-cs-fixer.lastDownload": 1562088922773,
+    "workbench.colorTheme": "Dracula Soft",
+    "vsicons.dontShowNewVersionMessage": true,
+    "go.goroot": "/home/hmartins/.gvm/gos/go1.12.7",
+    "go.gopath": "/home/hmartins/.gvm/pkgsets/go1.12.7/global",
+    "go.buildOnSave": "off",
+    "go.coverOnTestPackage": false,
+    "go.lintOnSave": "file",
+    "go.vetOnSave": "package",
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": [
+        "--fast"
+    ],
+    "python.analysis.cachingLevel": "Library",
+    "python.autoComplete.addBrackets": true,
+    "python.autoUpdateLanguageServer": false,
+    "python.dataScience.allowImportFromNotebook": false,
+    "python.dataScience.addGotoCodeLenses": false,
+    "python.dataScience.allowLiveShare": false,
+    "python.dataScience.askForKernelRestart": false,
+    "python.dataScience.askForLargeDataFrames": false,
+    "python.dataScience.changeDirOnImportExport": false,
+    "python.dataScience.collapseCellInputCodeByDefault": false,
+    "python.dataScience.colorizeInputBox": false,
+    "python.dataScience.debugJustMyCode": false,
+    "python.dataScience.decorateCells": false,
+    "python.dataScience.enableAutoMoveToNextCell": false,
+    "python.dataScience.enabled": false,
+    "python.dataScience.enableCellCodeLens": false,
+    "python.dataScience.enablePlotViewer": false,
+    "python.experiments.enabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.autopep8Path": "/home/hmartins/.pyenv/versions/3.7.0/bin/autopep8"
+}
