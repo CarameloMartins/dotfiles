@@ -48,6 +48,7 @@ install deb keybase https://prerelease.keybase.io/keybase_amd64.deb
 install bin docker-compose "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" 
 
 install clone tfenv https://github.com/tfutils/tfenv.git ~/.tfenv
+install clone asdf https://github.com/asdf-vm/asdf.git ~/.asdf
 
 install tar k9s https://github.com/derailed/k9s/releases/download/0.7.13/k9s_0.7.13_Linux_x86_64.tar.gz
 

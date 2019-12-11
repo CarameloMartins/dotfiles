@@ -1,3 +1,4 @@
+install asdf
 install bash
 install coreutils
 install derailed/k9s/k9s

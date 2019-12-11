@@ -98,6 +98,7 @@ fi
 print_section "Starting dotfiles.sh..."
 
 echo "Distribution: $(uname) $(uname -r)."
+OS_NAME=$(uname)
 
 #
 # Symlink with stow.
@@ -109,15 +110,26 @@ if [ "$OPTIONS_SYMLINK" -eq "1" ]; then
     execute "rm -f $HOME/.profile"
 
     execute "stow bash/"
-    # TODO: In MacOS, VS Code should be symlinked somewhere else.
-    execute "stow config/"
     execute "stow git/"
     execute "stow ssh/"
     execute "stow tmux/"
     execute "stow vim/"
 
+    if [[ "$OS_NAME" == "Linux" ]]; then
+        execute "stow -t ~/.config/ vscode/ --ignore=\"extensions\""
+    else
+        # this is a bit of hack because I couldn't get the escaping to work properly and stow was complaining.
+        APP_SUPPORT="$HOME/Library/Application Support/"
+        stow -t "$APP_SUPPORT" vscode/ --ignore="extensions"
+        echo -e "- \033[1;33m(stow -t $HOME/Library/Application Support/ vscode/ --ignore=\"extensions\")\033[0m ✓"
+    fi
+
     mk_dir "$HOME/.local/bin"
     execute "stow bin/ -t $HOME/.local/bin/"
+    
+    if command -v asdf > /dev/null; then
+        mk_dir "$HOME/.asdf"
+    fi
 fi
 
 #
@@ -127,7 +139,7 @@ fi
 if [ "$OPTIONS_UPDATE" -eq "1" ]; then
     print_section "Update"
 
-    if [[ "$(uname)" == "Darwin" ]]; then
+    if [[ "$OS_NAME" == "Darwin" ]]; then
         execute "brew upgrade"
     else
         execute "sudo apt -y --fix-broken install"
@@ -143,7 +155,7 @@ fi
 if [ "$OPTIONS_INSTALL" -eq "1" ]; then
     print_section "Installing Software"
 
-    if [ "$(uname)" == "Darwin" ]; then
+    if [ "$OS_NAME" == "Darwin" ]; then
         . install/macos.sh
     else
         . install/sources.sh
@@ -154,7 +166,7 @@ if [ "$OPTIONS_INSTALL" -eq "1" ]; then
 
     print_section "Remove"
 
-    if [[ "$(uname)" == "Darwin" ]]; then
+    if [[ "$OS_NAME" == "Darwin" ]]; then
         # TODO Automate removal of apps in MacOs.
         echo "- MacOS has no support for removing Applications."
     else
@@ -166,7 +178,7 @@ fi
 if [ "$OPTIONS_CLEANUP" -eq "1" ]; then
     print_section "Cleanup"
 
-    if [[ "$(uname)" == "Darwin" ]]; then
+    if [[ "$OS_NAME" == "Darwin" ]]; then
         execute "brew cleanup"
     else
         execute "sudo apt -qq -y autoremove"
@@ -177,23 +189,31 @@ fi
 # VSCode Extensions
 #
 
-if [ "$OPTIONS_INSTALL" -eq "1" ] || [ "$OPTIONS_UPDATE" -eq "1" ]; then
+if [ "$OPTIONS_INSTALL" -eq "1" ] || [ "$OPTIONS_UPDATE" -eq "1" ]; then 
     print_section "VSCode Extensions"
+    
+    if ! command -v code > /dev/null; then
+        # ~/.bashrc adds this command to PATH in MacOS so if the command is not there,
+        # that's probably because ~/.bashrc hasn't been loaded yet.
+        . bash/.bashrc
+    fi
 
-    # TODO: In Mac OS, you need to add the `code` command to shell from within VS Code itself.
+    if command -v code > /dev/null; then
+        uninstall=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
+        install=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
 
-    uninstall=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
-    install=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
+        echo "U: $(echo "$uninstall" | grep -c -E "^\-[^-]"). I: $(echo "$uninstall" | grep -c -E "^\+[^+]")."
 
-    echo "U: $(echo "$uninstall" | grep -c -E "^\-[^-]"). I: $(echo "$uninstall" | grep -c -E "^\+[^+]")."
+        echo "$uninstall" | grep -E "^\-[^-]" | sed -e "s/-//" | while read -r line; do
+            execute "code --uninstall-extension $line"
+        done
 
-    echo "$uninstall" | grep -E "^\-[^-]" | sed -e "s/-//" | while read -r line; do
-        execute "code --uninstall-extension $line"
-    done
-
-    echo "$install" | grep -E "^\+[^+]" | sed -e "s/+//" | while read -r line; do
-        execute "code --install-extension $line"
-    done
+        echo "$install" | grep -E "^\+[^+]" | sed -e "s/+//" | while read -r line; do
+            execute "code --install-extension $line"
+        done
+    else
+        echo "- 'code' doesn't seem to exist in your PATH."
+    fi
 fi
 
 #
@@ -203,7 +223,7 @@ fi
 if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customizing Desktop"
 
-    if [[ "$(uname)" != "Darwin" ]]; then
+    if [[ "$OS_NAME" != "Darwin" ]]; then
         rm_file ~/examples.desktop
 
         rm_dir ~/Documents/ 
@@ -237,10 +257,11 @@ fi
 if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customize Workflow"
     
-    if [[ "$(uname)" != "Darwin" ]]; then
+    if [[ "$OS_NAME" != "Darwin" ]]; then
         execute "sudo update-alternatives --set editor /usr/bin/nvim"
+        execute "source <(gopass completion bash)"
     else
-        echo "- No modifications for MacOS."
+        execute "source /dev/stdin <<<\"$(gopass completion bash)\""
     fi
 fi
 
