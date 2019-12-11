@@ -257,6 +257,8 @@ fi
 if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customize Workflow"
     
+    execute "nvim +PlugInstall +qall"
+
     if [[ "$OS_NAME" != "Darwin" ]]; then
         execute "sudo update-alternatives --set editor /usr/bin/nvim"
         execute "source <(gopass completion bash)"

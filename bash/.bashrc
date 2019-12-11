@@ -177,7 +177,8 @@ fi
 export GPG_TTY=$(tty)
 
 # Editor
-export EDITOR=nvim
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # VS Code (code) in Terminal (MacOS only)
 if [ "$OS_NAME" = "Darwin" ]; then
