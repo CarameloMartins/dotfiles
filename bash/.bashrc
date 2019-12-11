@@ -161,3 +161,15 @@ fi
 
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"
+
+# asdf
+if [ "$(uname)" = "Darwin" ]; then
+    . $(brew --prefix asdf)/asdf.sh
+    . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+else
+    . $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/completions/asdf.bash
+fi
+
+# GPG Signing
+export GPG_TTY=$(tty)
