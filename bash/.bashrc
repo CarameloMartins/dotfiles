@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+OS_NAME="$(uname)"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -163,7 +165,7 @@ fi
 export PATH="$HOME/.tfenv/bin:$PATH"
 
 # asdf
-if [ "$(uname)" = "Darwin" ]; then
+if [ "$OS_NAME" = "Darwin" ]; then
     . $(brew --prefix asdf)/asdf.sh
     . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 else
@@ -173,3 +175,12 @@ fi
 
 # GPG Signing
 export GPG_TTY=$(tty)
+
+# Editor
+export EDITOR=nvim
+
+
+if [ "$OS_NAME" = "Darwin" ]; then
+    # VS Code (code) in Terminal (MacOS only)
+    export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
