@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+
+# sources.sh
+#
+# Manage sources and keys for installing some software in Linux-based machines.
+
 if ! command -v nodejs > /dev/null; then
     curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 fi

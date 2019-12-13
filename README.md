@@ -12,14 +12,39 @@ configurations and bootstrap scripts.
 ## Instructions
 
 - Run `dotfiles.sh`.
-- `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set in another file `~/.gitconfig.id` and will be included in the configuration.
-- Run `vim -c "PlugInstall" -es`.
+- `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set in another file (`~/.gitconfig.id)` and will be included in the configuration.
 - Ubuntu UI:
     - Arc Dark Theme
     - Papirus Icon Theme
     - Dash to Dock
     - Shell:
       - Theme: Custom Solarized with White Text
+
+## Usage
+
+```hugo.martins at LIS-MBP16-0012 in ~/.dotfiles
+$ dotfiles --help
+caramelomartins' dotfiles for MacOS and Linux
+
+Usage: ./dotfiles.sh [options]
+
+options:
+-h, --help        show help
+-a, --all         do everything dotfiles.sh can do
+-c, --cleanup     cleanup with package manager
+-i, --install     install software
+-r, --repos       clone all of caramelomartins' publics repo
+-s, --symlink     symlink files to /Users/hugo.martins
+-u, --update      update installed software
+-w, --workflow    configure UI and workflow stuff
+
+note: repos are only cloned if called explicitly.
+```
+**Available Commands:**
+
+- `dotfiles status`: displays `git status` on the dotfiles repository.
+- `dotfiles edit`: opens vim with `dotfiles.sh` for editing.
+- `dotfiles update`: executes `git pull` on the repository to update it.
 
 ## Resources
 

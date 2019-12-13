@@ -1,6 +1,16 @@
 #!/bin/bash
 
-. scripts/utils.sh
+# dotfiles.sh
+# 
+# caramelomartins' dotfiles for MacOS and Linux. 
+# 
+# This script allows for the management of dotfiles for MacOs and Linux, plus some setup commands for new machines 
+# in both OSes. Additionally, it adds the script to your path and a bunch of administrative commands to facilitate 
+# the management of dotfiles and machine configuration.
+
+DOTFILES_DIR=$HOME/.dotfiles
+
+. "$DOTFILES_DIR/scripts/utils.sh"
 
 OPTIONS_SYMLINK=0
 OPTIONS_INSTALL=0
@@ -76,6 +86,20 @@ if [ "$#" -gt 0 ]; then
                 OPTIONS_WORKFLOW=1
                 shift
                 ;;
+            update)
+                cd "$DOTFILES_DIR" || exit 1
+                git pull origin master
+                exit 0
+                ;;
+            edit)
+                nvim "$DOTFILES_DIR/dotfiles.sh"
+                exit 0
+                ;;
+            status)
+                cd "$DOTFILES_DIR" || exit 1
+                git status
+                exit 0
+                ;;
             *)
                 echo "Option \"$1\" not recognized, please use an existing option. Aborting."
                 exit 1
@@ -100,6 +124,8 @@ print_section "Starting dotfiles.sh..."
 echo "Distribution: $(uname) $(uname -r)."
 OS_NAME=$(uname)
 
+cd "$DOTFILES_DIR" || exit 1
+
 #
 # Symlink with stow.
 #
@@ -109,23 +135,25 @@ if [ "$OPTIONS_SYMLINK" -eq "1" ]; then
     execute "rm -f $HOME/.bashrc"
     execute "rm -f $HOME/.profile"
 
-    execute "stow bash/"
-    execute "stow git/"
-    execute "stow ssh/"
-    execute "stow tmux/"
-    execute "stow vim/"
+    execute "stow -v bash/ -t $HOME"
+    execute "stow -v git/ -t $HOME"
+    execute "stow -v ssh/ -t $HOME"
+    execute "stow -v tmux/ -t $HOME"
+    execute "stow -v vim/ -t $HOME"
 
     if [[ "$OS_NAME" == "Linux" ]]; then
-        execute "stow -t $HOME/.config/ vscode/ --ignore=\"extensions\""
+        mkdir -p $HOME/.config/Code/User
+        execute "stow -v -t $HOME/.config/Code/User vscode/ --ignore=\"extensions\""
     else
         # this is a bit of hack because I couldn't get the escaping to work properly and stow was complaining.
-        APP_SUPPORT="$HOME/Library/Application Support/"
-        stow -t "$APP_SUPPORT" vscode/ --ignore="extensions"
+        mkdir -p "$HOME/Library/Application Support/Code/User"
+        APP_SUPPORT="$HOME/Library/Application Support/Code/User"
+        stow -v -t "$APP_SUPPORT" vscode/ --ignore="extensions"
         echo -e "- \033[1;33m(stow -t $HOME/Library/Application Support/ vscode/ --ignore=\"extensions\")\033[0m ✓"
     fi
 
     mk_dir "$HOME/.local/bin"
-    execute "stow bin/ -t $HOME/.local/bin/"
+    execute "stow -v bin/ -t $HOME/.local/bin/"
     
     if command -v asdf > /dev/null; then
         mk_dir "$HOME/.asdf"
@@ -156,13 +184,13 @@ if [ "$OPTIONS_INSTALL" -eq "1" ]; then
     print_section "Installing Software"
 
     if [ "$OS_NAME" == "Darwin" ]; then
-        . install/macos.sh
+        . "$DOTFILES_DIR/install/macos.sh"
     else
-        . install/sources.sh
-        . install/linux.sh
+        . "$DOTFILES_DIR/install/sources.sh"
+        . "$DOTFILES_DIR/install/linux.sh"
     fi
 
-    . install/common.sh
+    . "$DOTFILES_DIR/install/common.sh"
 
     print_section "Remove"
 
@@ -195,12 +223,12 @@ if [ "$OPTIONS_INSTALL" -eq "1" ] || [ "$OPTIONS_UPDATE" -eq "1" ]; then
     if ! command -v code > /dev/null; then
         # ~/.bashrc adds this command to PATH in MacOS so if the command is not there,
         # that's probably because ~/.bashrc hasn't been loaded yet.
-        . bash/.bashrc
+        . "$DOTFILES_DIR/bash/.bashrc"
     fi
 
     if command -v code > /dev/null; then
-        uninstall=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
-        install=$(diff -u <(code --list-extensions) <(cat vscode/extensions))
+        uninstall=$(diff -u <(code --list-extensions) <(cat "$DOTFILES_DIR/vscode/extensions"))
+        install=$(diff -u <(code --list-extensions) <(cat "$DOTFILES_DIR/vscode/extensions"))
 
         echo "U: $(echo "$uninstall" | grep -c -E "^\-[^-]"). I: $(echo "$uninstall" | grep -c -E "^\+[^+]")."
 
@@ -224,17 +252,17 @@ if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customizing Desktop"
 
     if [[ "$OS_NAME" != "Darwin" ]]; then
-        rm_file ~/examples.desktop
+        "rm_file $HOME/examples.desktop"
 
-        rm_dir ~/Documents/ 
-        rm_dir ~/Music/ 
-        rm_dir ~/Pictures/ 
-        rm_dir ~/Public/ 
-        rm_dir ~/Templates/ 
-        rm_dir ~/Videos/
+        "rm_dir $HOME/Documents/" 
+        "rm_dir $HOME/Music/" 
+        "rm_dir $HOME/Pictures/" 
+        "rm_dir $HOME/Public/" 
+        "rm_dir $HOME/Templates/" 
+        "rm_dir $HOME/Videos/"
     fi
 
-    mk_dir ~/Projects/
+    "mk_dir $HOME/Projects/"
 fi
 
 #
@@ -263,6 +291,10 @@ if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     
     if [[ "$OS_NAME" != "Darwin" ]]; then
         execute "sudo update-alternatives --set editor /usr/bin/nvim"
+    fi
+
+    if [[ ! -h $HOME/.local/bin/dotfiles ]]; then
+        execute "ln -s $DOTFILES_DIR/dotfiles.sh $HOME/.local/bin/dotfiles"
     fi
 fi
 

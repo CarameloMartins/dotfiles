@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+
+# macos.sh
+#
+# Install software that is only installed on MacOS-based machines.
+
 install asdf
 install bash
 install coreutils

@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# common.sh
+# 
+# Install software that has a common installation process in both Linux and MacOs.
 
 install awscli
 install curl

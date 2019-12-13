@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+
+# linux.sh
+#
+# Install software that is only installed in Linux-based machines.
+
 install apt-transport-https 
 install build-essential 
 install ca-certificates 
