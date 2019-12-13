@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
+# utils.sh
 #
-# Utility Functionality
-#
+# Helper functions that are used in th execution of all the scripts.
 
 install(){
     PKG_NAME=$1

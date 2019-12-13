@@ -184,3 +184,6 @@ export EDITOR="$VISUAL"
 if [ "$OS_NAME" = "Darwin" ]; then
     export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
+
+# in MacOS, $HOME/.local/bin/ doesn't exist in PATH.
+[[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="$HOME/.local/bin:${PATH}"
