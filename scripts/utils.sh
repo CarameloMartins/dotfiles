@@ -78,6 +78,10 @@ install(){
             sudo apt -qq --yes install "$PKG_NAME"
         fi
     fi
+    
+    if [ $? -gt 0 ]; then
+        return 1
+    fi
 
     echo -e "- \033[01;33m$PKG_NAME\033[00m ✓"
 }
