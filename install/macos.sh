@@ -33,3 +33,9 @@ install cask iterm2
 install cask firefox
 install cask 1password
 install cask 1password-cli
+install kotlin
+install hub
+install cask java
+install gradle
+install ktlint
+install cask intellij-idea-ce

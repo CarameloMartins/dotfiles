@@ -19,6 +19,7 @@ install tox
 install unzip
 install wget
 install watch
+install lynx
 
 install bin phpbrew https://github.com/phpbrew/phpbrew/raw/master/phpbrew
 
