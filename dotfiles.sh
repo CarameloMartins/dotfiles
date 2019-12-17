@@ -8,6 +8,8 @@
 # in both OSes. Additionally, it adds the script to your path and a bunch of administrative commands to facilitate 
 # the management of dotfiles and machine configuration.
 
+set -e 
+
 DOTFILES_DIR=$HOME/.dotfiles
 
 . "$DOTFILES_DIR/scripts/utils.sh"
@@ -39,19 +41,28 @@ if [ "$#" -gt 0 ]; then
             -h|--help)
                 echo "caramelomartins' dotfiles for MacOS and Linux"
                 echo ""
-                echo "Usage: ./dotfiles.sh [options]"
+                echo "Usage: ./dotfiles.sh [options] [commands]"
                 echo ""
+                echo "commands:"
+                echo "  update            update git repository of dotfiles"
+                echo "  edit              edit dotfiles.sh"
+                echo "  status            show current status of git repository"
+                echo "  install           install software and update necessary installation files"
+                echo "  issue             open an issue in dotfiles Github repository"
+                echo ""           
                 echo "options:"
-                echo "-h, --help        show help"
-                echo "-a, --all         do everything dotfiles.sh can do"
-                echo "-c, --cleanup     cleanup with package manager"
-                echo "-i, --install     install software"
-                echo "-r, --repos       clone all of caramelomartins' publics repo"
-                echo "-s, --symlink     symlink files to $HOME"
-                echo "-u, --update      update installed software"
-                echo "-w, --workflow    configure UI and workflow stuff"
+                echo "  -h, --help        show help"
+                echo "  -a, --all         do everything dotfiles.sh can do"
+                echo "  -c, --cleanup     cleanup with package manager"
+                echo "  -i, --install     install software"
+                echo "  -r, --repos       clone all of caramelomartins' publics repo"
+                echo "  -s, --symlink     symlink files to $HOME"
+                echo "  -u, --update      update installed software"
+                echo "  -w, --workflow    configure UI and workflow stuff"
                 echo ""
-                echo "note: repos are only cloned if called explicitly."
+                echo "notes:" 
+                echo "  - repos are only cloned if called explicitly."
+                echo "  - options are only relevant when you run the script without a command."
                 exit 0
                 ;;
             -a|--all)
@@ -88,16 +99,35 @@ if [ "$#" -gt 0 ]; then
                 ;;
             update)
                 cd "$DOTFILES_DIR" || exit 1
-                git pull origin master
+                git pull origin master || { echo "couldn't update repository from remote"; exit 1; }
                 exit 0
                 ;;
             edit)
-                nvim "$DOTFILES_DIR/dotfiles.sh"
+                nvim "$DOTFILES_DIR/dotfiles.sh" || exit 1
                 exit 0
                 ;;
             status)
                 cd "$DOTFILES_DIR" || exit 1
-                git status
+                git status || exit 1
+                exit 0
+                ;;
+            install)
+                shift
+                FILE=$1
+                shift
+                
+                install $@ || { echo "couldn't execute '$@'"; exit 1; }
+                echo "install $@" >> "$DOTFILES_DIR/install/$FILE.sh"
+                exit 0
+                ;;
+            issue)
+                if ! command -v hub > /dev/null; then
+                    echo "hub is not currently installed."
+                    exit 1
+                fi
+
+                cd "$DOTFILES_DIR" || exit 1
+                hub issue create || exit 1
                 exit 0
                 ;;
             *)
