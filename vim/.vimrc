@@ -17,6 +17,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-syntastic/syntastic'
 Plug 'udalov/kotlin-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'mzlogin/vim-markdown-toc'
 
 call plug#end()
 

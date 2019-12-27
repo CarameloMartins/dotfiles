@@ -39,3 +39,4 @@ install cask java
 install gradle
 install ktlint
 install cask intellij-idea-ce
+install minikube
