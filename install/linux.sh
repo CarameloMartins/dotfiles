@@ -55,12 +55,28 @@ install deb gopass https://github.com/gopasspw/gopass/releases/download/v1.8.6/g
 
 install bin docker-compose "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" 
 
+install bin minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
+
 install clone tfenv https://github.com/tfutils/tfenv.git ~/.tfenv
 install clone asdf https://github.com/asdf-vm/asdf.git ~/.asdf
 
-install tar k9s https://github.com/derailed/k9s/releases/download/0.7.13/k9s_0.7.13_Linux_x86_64.tar.gz
+install tar k9s https://github.com/derailed/k9s/releases/download/0.7.13/k9s_0.7.13_Linux_x86_64.tar.gz 
+
+install zip op "https://cache.agilebits.com/dist/1P/op/pkg/v0.8.0/op_linux_amd64_v0.8.0.zip"
+
+install tar hub https://github.com/github/hub/releases/download/v2.13.0/hub-linux-amd64-2.13.0.tgz  hub-linux-amd64-2.13.0/bin/
 
 install bash dir papirus-icon-theme /usr/share/icons/Papirus https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install.sh
+
+# awscli
+
+if ! command -v aws > /dev/null; then
+    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "$HOME/Downloads/awscli-bundle.zip"
+    unzip "$HOME/Downloads/awscli-bundle.zip" -d "$HOME/Downloads"
+    sudo "$HOME/Downloads/awscli-bundle/install" -i /usr/local/aws -b /usr/local/bin/aws
+    sudo rm -r "$HOME/Downloads/awscli-bundle.zip" "$HOME/Downloads/awscli-bundle"
+    echo -e "- \033[01;33maws\033[00m ✓"
+fi
 
 # gnome-shell-system-monitor-applet
 

@@ -34,13 +34,28 @@ install(){
     elif [ "$1" = "tar" ]; then
         PKG_NAME=$2
         PKG_URL=$3
-        
+        PKG_PATH=$4
+
         if ! command -v "$PKG_NAME" > /dev/null; then
             curl -L "$PKG_URL" -o "$HOME/Downloads/$PKG_NAME.tar.gz"
-            tar -xzvf "$HOME/Downloads/$PKG_NAME.tar.gz" "$PKG_NAME"
-            sudo mv "$PKG_NAME" "/usr/local/bin/$PKG_NAME"
+            tar -xzvf "$HOME/Downloads/$PKG_NAME.tar.gz" "$PKG_PATH$PKG_NAME"
+            sudo mv "$PKG_PATH$PKG_NAME" "/usr/local/bin/$PKG_NAME"
             sudo chmod +x "/usr/local/bin/$PKG_NAME"
             rm -r "$HOME/Downloads/$PKG_NAME.tar.gz"
+
+            if [ -n "$PKG_PATH" ]; then
+                sudo rm -r "$(awk -F/ '{print $1}' <<< $PKG_PATH)"
+            fi
+        fi
+    elif [ "$1" = "zip" ]; then
+        PKG_NAME=$2
+        PKG_URL=$3
+
+        if ! command -v "$PKG_NAME" > /dev/null; then
+            curl -L "$PKG_URL" -o "$HOME/Downloads/$PKG_NAME.zip"
+            unzip "$HOME/Downloads/$PKG_NAME.zip" -d "$HOME/Downloads/$PKG_NAME"
+            sudo mv "$HOME/Downloads/$PKG_NAME/$PKG_NAME" "/usr/local/bin/"
+            sudo rm -r "$HOME/Downloads/$PKG_NAME" "$HOME/Downloads/$PKG_NAME.zip"
         fi
     elif [ "$1" = "bash" ] && [ "$#" -gt 2 ]; then
         PKG_NAME=$3
