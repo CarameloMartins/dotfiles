@@ -229,7 +229,6 @@ if [ "$OPTIONS_INSTALL" -eq "1" ]; then
         echo "- MacOS has no support for removing Applications."
     else
         remove thunderbird*
-        remove libreoffice*
     fi
 fi
 
@@ -282,17 +281,17 @@ if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customizing Desktop"
 
     if [[ "$OS_NAME" != "Darwin" ]]; then
-        rm_file "$HOME/examples.desktop"
+        execute "rm_dir $HOME/examples.desktop"
 
-        rm_dir "$HOME/Documents/" 
-        rm_dir "$HOME/Music/" 
-        rm_dir "$HOME/Pictures/" 
-        rm_dir "$HOME/Public/" 
-        rm_dir "$HOME/Templates/" 
-        rm_dir "$HOME/Videos/"
+        execute "rm_dir $HOME/Documents/" 
+        execute "rm_dir $HOME/Music/" 
+        execute "rm_dir $HOME/Pictures/" 
+        execute "rm_dir $HOME/Public/" 
+        execute "rm_dir $HOME/Templates/" 
+        execute "rm_dir $HOME/Videos/"
     fi
 
-    mk_dir "$HOME/Projects/"
+    execute "mk_dir $HOME/Projects/"
 fi
 
 #
