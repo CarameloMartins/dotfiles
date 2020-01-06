@@ -325,9 +325,13 @@ if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     if [[ ! -h $HOME/.local/bin/dotfiles ]]; then
         execute "ln -s $DOTFILES_DIR/dotfiles.sh $HOME/.local/bin/dotfiles"
     fi
-
-    if [ ! -f "$HOME/.git-completion.sh" ]; then
-        execute "curl -s https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o $HOME/.git-completion.sh"
+    
+    if [[ "$OS_NAME" == "Darwin" ]]; then
+        COMPLETION_PREFIX="/usr/local"
+    fi
+    
+    if [ "$OS_NAME" == "Darwin" ] && [ ! -f "$COMPLETION_PREFIX/etc/bash_completion.d/git-completion.bash" ]; then
+        execute "curl -s https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o $COMPLETION_PREFIX/etc/bash_completion.d/git-completion.bash"
     fi
 
     if [ ! -f "$HOME/.git-prompt.sh" ]; then

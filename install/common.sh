@@ -20,6 +20,7 @@ install unzip
 install wget
 install watch
 install lynx
+install bash-completion
 
 install bin phpbrew https://github.com/phpbrew/phpbrew/raw/master/phpbrew
 
