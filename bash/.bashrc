@@ -166,11 +166,12 @@ export PATH="$HOME/.tfenv/bin:$PATH"
 
 # asdf
 if [ "$OS_NAME" = "Darwin" ]; then
-    . $(brew --prefix asdf)/asdf.sh
-    . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+    PREFIX="/usr/local/opt/asdf"
+    . "$PREFIX/asdf.sh"
+    . "$PREFIX/etc/bash_completion.d/asdf.bash"
 else
-    . $HOME/.asdf/asdf.sh
-    . $HOME/.asdf/completions/asdf.bash
+    . "$HOME/.asdf/asdf.sh"
+    . "$HOME/.asdf/completions/asdf.bash"
 fi
 
 # GPG Signing
@@ -187,3 +188,13 @@ fi
 
 # in MacOS, $HOME/.local/bin/ doesn't exist in PATH.
 [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="$HOME/.local/bin:${PATH}"
+
+if [ -f "$HOME/.git-completion.bash" ]; then
+    source "$HOME/.git-completion.bash"
+fi
+
+if [ -f "$HOME/.git-prompt.sh" ]; then
+    source "$HOME/.git-prompt.sh"
+    PROMPT_COMMAND="__git_ps1 '[%s] '"
+fi
+

@@ -282,17 +282,17 @@ if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customizing Desktop"
 
     if [[ "$OS_NAME" != "Darwin" ]]; then
-        "rm_file $HOME/examples.desktop"
+        rm_file "$HOME/examples.desktop"
 
-        "rm_dir $HOME/Documents/" 
-        "rm_dir $HOME/Music/" 
-        "rm_dir $HOME/Pictures/" 
-        "rm_dir $HOME/Public/" 
-        "rm_dir $HOME/Templates/" 
-        "rm_dir $HOME/Videos/"
+        rm_dir "$HOME/Documents/" 
+        rm_dir "$HOME/Music/" 
+        rm_dir "$HOME/Pictures/" 
+        rm_dir "$HOME/Public/" 
+        rm_dir "$HOME/Templates/" 
+        rm_dir "$HOME/Videos/"
     fi
 
-    "mk_dir $HOME/Projects/"
+    mk_dir "$HOME/Projects/"
 fi
 
 #
@@ -325,6 +325,14 @@ if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
 
     if [[ ! -h $HOME/.local/bin/dotfiles ]]; then
         execute "ln -s $DOTFILES_DIR/dotfiles.sh $HOME/.local/bin/dotfiles"
+    fi
+
+    if [ ! -f "$HOME/.git-completion.sh" ]; then
+        execute "curl -s https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o $HOME/.git-completion.sh"
+    fi
+
+    if [ ! -f "$HOME/.git-prompt.sh" ]; then
+        execute "curl -s https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o $HOME/.git-prompt.sh"
     fi
 fi
 
