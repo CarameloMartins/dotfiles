@@ -116,7 +116,7 @@ if [ "$#" -gt 0 ]; then
                 FILE=$1
                 shift
                 
-                install $@ || { echo "couldn't execute '$@'"; exit 1; }
+                install "$@" || { echo "couldn't execute '$@'"; exit 1; }
                 echo "install $@" >> "$DOTFILES_DIR/install/$FILE.sh"
                 exit 0
                 ;;
@@ -188,6 +188,8 @@ if [ "$OPTIONS_SYMLINK" -eq "1" ]; then
     if command -v asdf > /dev/null; then
         mk_dir "$HOME/.asdf"
     fi
+
+    mk_dir "$HOME/.kube/profiles/"
 fi
 
 #

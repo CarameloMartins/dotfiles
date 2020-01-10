@@ -1,4 +1,5 @@
 OS=$(uname)
+PROJECTS_PATH="$HOME/Projects"
 
 # Juniper VPN
 alias vpn-start='vpn_start'
@@ -18,6 +19,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias cdp="cd $PROJECTS_PATH && cd"
 
 # Listing
 if [[ $OS == "Darwin" ]]; then
@@ -48,3 +50,10 @@ alias tkill='tmux kill-server'
 
 # nvim
 alias vim='nvim'
+
+# kubectl
+alias k='kubectl'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias krm='kubectl delete'
+alias kctx='kubectl config use-context'

@@ -151,9 +151,9 @@ rm_dir() {
 
 mk_dir(){
     if [ ! -d "$1" ]; then
-        execute "mkdir $1"
+        execute "mkdir -p $1"
     else
-        print_execution "mkdir $1"
+        print_execution "mkdir -p $1"
     fi
 }
 

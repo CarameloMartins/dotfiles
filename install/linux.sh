@@ -99,3 +99,4 @@ if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ];
 fi
 
 print_execution "dash-to-dock"
+install clone kube-ps1 https://github.com/jonmosco/kube-ps1.git /Users/hugo.martins/.kube-ps1

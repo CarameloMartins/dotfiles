@@ -40,3 +40,4 @@ install gradle
 install ktlint
 install cask intellij-idea-ce
 install minikube
+install kube-ps1

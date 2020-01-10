@@ -135,9 +135,6 @@ if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux new
 fi
 
-# PS1
-export PS1="\[\e[33m\]\u \[\e[97m\]at \[\e[32m\]\h \[\e[97m\]in \[\e[34m\]\w \[\e[97m\]\n$ "
-
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -202,6 +199,31 @@ fi
 
 if [ -f "$HOME/.git-prompt.sh" ]; then
     source "$HOME/.git-prompt.sh"
-    PROMPT_COMMAND="__git_ps1 '[%s] '"
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUPSTREAM="verbose"
 fi
 
+# kubectl 
+export KUBECONFIG="$HOME/.kube/config"
+
+if [ -d "$HOME/.kube/profiles/" ]; then
+    for FILE in "$HOME"/.kube/profiles/*
+    do
+        export KUBECONFIG="$KUBECONFIG:$FILE"
+    done
+fi
+
+if [ "$OS_NAME" = "Darwin" ]; then
+    source /usr/local/opt/kube-ps1/share/kube-ps1.sh
+else
+    source "$HOME/.kube-ps1/kube-ps1.sh"
+fi
+
+if kube_ps1 > /dev/null; then
+    KUBE_PS1_NS_ENABLE=0
+    KUBE_PS1_CLUSTER_FUNCTION=check_kube_cluster
+fi
+
+# PS1
+export PROMPT_COMMAND="$PROMPT_COMMAND;_prompt" && _prompt
