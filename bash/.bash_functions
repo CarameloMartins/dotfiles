@@ -8,17 +8,17 @@ _prompt() {
 
     # kubectl information.
     if kube_ps1 > /dev/null; then
-        PS1="$(kube_ps1) "
+        PS1="${PS1}$(kube_ps1) "
     fi
-
-    PS1="${PS1}\[\e[33m\]\u \[\e[97m\]in \[\e[34m\]\w \[\e[97m\]"
+    
+    PS1="${PS1}in \e[33m\]\w \[\e[97m\]"
     
     # git related information.
     if [ -f "$HOME/.git-prompt.sh" ]; then
-        PS1="$PS1$(__git_ps1 "on \e[35m%s\[\e[97m\]")"
+        PS1="$PS1$(__git_ps1 "\e[32mgit:[%s]\[\e[97m\]")"
     fi
-
-    PS1="$PS1\n$ " 
+    
+    PS1="${PS1}\n$ " 
 }
 
 check_kube_cluster() {

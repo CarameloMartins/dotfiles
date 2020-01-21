@@ -12,6 +12,12 @@
 [alias]
     prb = remote update origin --prune
     last = log -1 HEAD
+    lg = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%ar)%Creset by %Cblue<%an>%Creset' --no-merges
+    s = status
+    d = diff
+    co = checkout
+    br = branch
+    pr = pull --rebase
 
 [commit]
     gpgsign = true
