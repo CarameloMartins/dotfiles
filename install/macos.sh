@@ -42,4 +42,3 @@ install ktlint
 install cask intellij-idea-ce
 install minikube
 install kube-ps1
-install cask dbeaver-community
