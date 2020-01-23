@@ -232,6 +232,12 @@ if [ "$OPTIONS_INSTALL" -eq "1" ]; then
     else
         remove thunderbird
     fi
+
+    print_section "Manual"
+
+    echo "- kotlinc"
+    echo "- gradle"
+    echo "- dbeaver"
 fi
 
 if [ "$OPTIONS_CLEANUP" -eq "1" ]; then
