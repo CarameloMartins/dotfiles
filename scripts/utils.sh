@@ -73,7 +73,7 @@ install(){
                 curl -s -L "$PKG_URL" | bash
             fi
         fi
-    elif [ "$(uname)" = "Darwin" ]; then
+    elif [[ "$(uname)" == Darwin ]]; then
         if [ "$1" = "cask" ]; then
             PKG_NAME=$2
             PKG_OK=$(brew cask list | grep "$PKG_NAME")
@@ -87,24 +87,20 @@ install(){
             fi
         fi
     else
-        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' "$PKG_NAME" | grep "install ok installed")
-        if [ "" = "$PKG_OK" ]; then
+        PKG_OK=$(dpkg-query -W -f='${Status}' "$PKG_NAME" 2>/dev/null | grep -c "install ok installed" || echo "0")
+        if [[ "0" -eq "$PKG_OK" ]]; then
             echo "Installing $PKG_NAME..."
             sudo apt -qq --yes install "$PKG_NAME"
         fi
     fi
     
-    if [ $? -gt 0 ]; then
-        return 1
-    fi
-
     echo -e "- \033[01;33m$PKG_NAME\033[00m ✓"
 }
 
 remove(){
     # https://stackoverflow.com/questions/1298066/check-if-an-apt-get-package-is-installed-and-then-install-it-if-its-not-on-linu
-    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' "$1" | grep "install ok installed")
-    if [ "" != "$PKG_OK" ]; then
+    PKG_OK=$(dpkg-query -W -f='${Status}' "$PKG_NAME" 2>/dev/null | grep -c "install ok installed" || echo "0")
+    if [ "1" -eq "$PKG_OK" ]; then
         echo "Uninstalling $1..."
         sudo apt -qq --yes remove "$1"
     fi

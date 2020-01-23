@@ -8,10 +8,14 @@ _prompt() {
 
     # kubectl information.
     if kube_ps1 > /dev/null; then
-        PS1="${PS1}$(kube_ps1) "
+        PS1="${PS1}$(kube_ps1)"
+
+        if [[ $(kube_ps1) != "" ]]; then
+            PS1="$PS1 "
+        fi
     fi
     
-    PS1="${PS1}in \e[33m\]\w \[\e[97m\]"
+    PS1="${PS1}\e[34m\]\u \e[33m\]\w \[\e[97m\]"
     
     # git related information.
     if [ -f "$HOME/.git-prompt.sh" ]; then

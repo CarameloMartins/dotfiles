@@ -38,6 +38,7 @@ install wget
 install xclip 
 install xz-utils 
 install zlib1g-dev
+install procps
 
 install gnome-shell-extensions
 install gnome-tweaks
@@ -78,6 +79,12 @@ if ! command -v aws > /dev/null; then
     echo -e "- \033[01;33maws\033[00m ✓"
 fi
 
+# pre-commit
+
+if ! command -v pre-commit > /dev/null; then
+    curl https://pre-commit.com/install-local.py | python -
+fi
+
 # gnome-shell-system-monitor-applet
 
 if [ ! -d ~/.local/share/gnome-shell/extensions/system-monitor@paradoxxx.zero.gmail.com ]; then
@@ -99,4 +106,5 @@ if [ ! -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com ];
 fi
 
 print_execution "dash-to-dock"
-install clone kube-ps1 https://github.com/jonmosco/kube-ps1.git /Users/hugo.martins/.kube-ps1
+
+install clone kube-ps1 https://github.com/jonmosco/kube-ps1.git "$HOME/.kube-ps1"

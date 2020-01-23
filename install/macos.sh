@@ -25,6 +25,7 @@ install postgres
 install python
 install tfenv
 install hugo
+install watch
 
 install cask spotify
 install cask visual-studio-code

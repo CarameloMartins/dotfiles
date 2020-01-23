@@ -8,7 +8,7 @@
 # in both OSes. Additionally, it adds the script to your path and a bunch of administrative commands to facilitate 
 # the management of dotfiles and machine configuration.
 
-set -e 
+set -e
 
 DOTFILES_DIR=$HOME/.dotfiles
 
@@ -172,7 +172,7 @@ if [ "$OPTIONS_SYMLINK" -eq "1" ]; then
     execute "stow -v vim/ -t $HOME"
 
     if [[ "$OS_NAME" == "Linux" ]]; then
-        mkdir -p $HOME/.config/Code/User
+        mkdir -p "$HOME/.config/Code/User"
         execute "stow -v -t $HOME/.config/Code/User vscode/ --ignore=\"extensions\""
     else
         # this is a bit of hack because I couldn't get the escaping to work properly and stow was complaining.
@@ -230,7 +230,7 @@ if [ "$OPTIONS_INSTALL" -eq "1" ]; then
         # TODO Automate removal of apps in MacOs.
         echo "- MacOS has no support for removing Applications."
     else
-        remove thunderbird*
+        remove thunderbird
     fi
 fi
 
@@ -312,6 +312,10 @@ if [ "$OPTIONS_REPOS" -eq "1" ]; then
         fi
     done
 fi
+
+#
+# Workflow
+#
 
 if [ "$OPTIONS_WORKFLOW" -eq "1" ]; then
     print_section "Customize Workflow"

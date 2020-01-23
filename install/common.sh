@@ -18,7 +18,6 @@ install tmux
 install tox
 install unzip
 install wget
-install watch
 install lynx
 install bash-completion
 
