@@ -230,3 +230,4 @@ fi
 
 # PS1
 export PROMPT_COMMAND="$PROMPT_COMMAND;_prompt" && _prompt
+

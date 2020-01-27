@@ -1,10 +1,6 @@
-# read a markdown files in terminal
-mdr () {
-    pandoc $1 | lynx --stdin
-}
-
+# Generate a new PS1.
 _prompt() {
-    PS1=""
+    PS1="\A "
 
     # kubectl information.
     if kube_ps1 > /dev/null; then
@@ -25,6 +21,7 @@ _prompt() {
     PS1="${PS1}\n$ " 
 }
 
+# Add a fire emoji if you are using a cluster with PRD in its name.
 check_kube_cluster() {
     CLUSTER="$1"
 
@@ -34,3 +31,4 @@ check_kube_cluster() {
     
     echo $CLUSTER
 }
+
