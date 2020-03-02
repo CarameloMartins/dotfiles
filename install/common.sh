@@ -46,3 +46,9 @@ if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
 fi
 
 print_execution "vim-plug"
+
+if [ ! -d "$(pyenv root)/plugins/pyenv-virtualenv" ]; then
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+fi
+
+print_execution "pyenv-virtualenv"

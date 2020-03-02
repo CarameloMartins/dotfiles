@@ -18,6 +18,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'udalov/kotlin-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 call plug#end()
 
@@ -73,6 +74,11 @@ let g:syntastic_go_checkers = ['go', 'golint', 'errcheck', 'golangci_lint']
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+
+""""""""""""""""""""""""""""
+" mzlogin/vim-markdown-toc "
+""""""""""""""""""""""""""""
+let g:vim_markdown_conceal=0
 
 """""""""""""""""""""""""
 " General Configuration "

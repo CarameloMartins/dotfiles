@@ -156,6 +156,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
       eval "$(pyenv init -)"
 fi
 
+if [[ ! -d "$(pyenv root)/plugins/pyenv-virtualenv" ]]; then
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 [[ -s "/home/hmartins/.gvm/scripts/gvm" ]] && source "/home/hmartins/.gvm/scripts/gvm"
 
 # gvm

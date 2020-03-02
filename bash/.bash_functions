@@ -11,11 +11,17 @@ _prompt() {
         fi
     fi
     
+    # virtualenv information.
+    
+    if [[ "$VIRTUAL_ENV" != "" ]]; then
+        PS1="${PS1}venv:$(basename $VIRTUAL_ENV) "
+    fi 
+
     PS1="${PS1}\e[34m\]\u \e[33m\]\w \[\e[97m\]"
     
     # git related information.
     if [ -f "$HOME/.git-prompt.sh" ]; then
-        PS1="$PS1$(__git_ps1 "\e[32mgit:[%s]\[\e[97m\]")"
+        PS1="$PS1$(__git_ps1 "\e[32mgit:[%s]\[\e[0m")"
     fi
     
     PS1="${PS1}\n$ " 

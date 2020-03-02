@@ -109,6 +109,5 @@
     "python.dataScience.enableCellCodeLens": false,
     "python.dataScience.enablePlotViewer": false,
     "python.experiments.enabled": false,
-    "python.linting.flake8Enabled": true,
     "python.formatting.autopep8Path": "/home/hmartins/.pyenv/versions/3.7.0/bin/autopep8"
 }

@@ -108,3 +108,9 @@ fi
 print_execution "dash-to-dock"
 
 install clone kube-ps1 https://github.com/jonmosco/kube-ps1.git "$HOME/.kube-ps1"
+
+if ! command -v yarn > /dev/null; then
+    cd /opt
+    sudo wget https://yarnpkg.com/latest.tar.gz
+    sudo tar zvxf latest.tar.gz
+fi

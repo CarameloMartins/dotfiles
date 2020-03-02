@@ -7,7 +7,6 @@
 install asdf
 install bash
 install coreutils
-install derailed/k9s/k9s
 install docker
 install docker-compose
 install findutils
@@ -26,6 +25,8 @@ install python
 install tfenv
 install hugo
 install watch
+install yarn
+install reattach-to-user-namespace
 
 install cask spotify
 install cask visual-studio-code
@@ -42,3 +43,7 @@ install ktlint
 install cask intellij-idea-ce
 install minikube
 install kube-ps1
+
+if ! command -v k9s > /dev/null; then
+    homebrew install derailed/k9s/k9s
+fi
