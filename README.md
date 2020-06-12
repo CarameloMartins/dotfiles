@@ -7,6 +7,7 @@ configurations and bootstrap scripts.
 
 - stow
 - git
+- curl
 - brew (on MacOS)
 
 ## Instructions
