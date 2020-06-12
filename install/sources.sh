@@ -5,7 +5,7 @@
 # Manage sources and keys for installing some software in Linux-based machines.
 
 if ! command -v nodejs > /dev/null; then
-    curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 fi
 
 if ! command -v kubectl > /dev/null; then
@@ -17,11 +17,11 @@ fi
 
 if ! command -v docker > /dev/null; then
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 fi   
 
 if ! command -v typora > /dev/null; then
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE
     sudo add-apt-repository 'deb https://typora.io/linux ./'
     sudo apt update
 fi
