@@ -32,6 +32,10 @@ if ! command -v git > /dev/null; then
     echo "git is missing. Please install git."
 fi
 
+if ! command -v curl > /dev/null; then
+    echo "curl is missing. Please install curl."
+fi
+
 #
 # Parse Flags
 #
