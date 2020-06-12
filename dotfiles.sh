@@ -8,8 +8,6 @@
 # in both OSes. Additionally, it adds the script to your path and a bunch of administrative commands to facilitate 
 # the management of dotfiles and machine configuration.
 
-set -e
-
 DOTFILES_DIR=$HOME/.dotfiles
 
 . "$DOTFILES_DIR/scripts/utils.sh"
@@ -206,7 +204,7 @@ if [ "$OPTIONS_UPDATE" -eq "1" ]; then
     if [[ "$OS_NAME" == "Darwin" ]]; then
         execute "brew upgrade"
     else
-        execute "sudo apt -y --fix-broken install"
+        execute "sudo apt -qq -y --fix-broken install"
         execute "sudo apt -qq update"
         execute "sudo apt -qq -y upgrade"
     fi
@@ -236,12 +234,6 @@ if [ "$OPTIONS_INSTALL" -eq "1" ]; then
     else
         remove thunderbird
     fi
-
-    print_section "Manual"
-
-    echo "- kotlinc"
-    echo "- gradle"
-    echo "- dbeaver"
 fi
 
 if [ "$OPTIONS_CLEANUP" -eq "1" ]; then

@@ -14,12 +14,6 @@ configurations and bootstrap scripts.
 
 - Run `dotfiles.sh`.
 - `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set in another file (`~/.gitconfig.id)` and will be included in the configuration.
-- Ubuntu UI:
-    - Arc Dark Theme
-    - Papirus Icon Theme
-    - Dash to Dock
-    - Shell:
-      - Theme: Custom Solarized with White Text
 
 ## Usage
 ```hugo.martins at LIS-MBP16-0012 in ~/.dotfiles

@@ -87,8 +87,8 @@ install(){
             fi
         fi
     else
-        PKG_OK=$(dpkg-query -W -f='${Status}' "$PKG_NAME" 2>/dev/null | grep -c "install ok installed" || echo "0")
-        if [[ "0" -eq "$PKG_OK" ]]; then
+        PKG_OK=$(dpkg-query -W -f='${Status}' "$PKG_NAME" 2>/dev/null | grep "install ok installed" || echo "0")
+        if [ "0" == "$PKG_OK" ]; then
             echo "Installing $PKG_NAME..."
             sudo apt -qq --yes install "$PKG_NAME"
         fi
@@ -100,7 +100,7 @@ install(){
 remove(){
     # https://stackoverflow.com/questions/1298066/check-if-an-apt-get-package-is-installed-and-then-install-it-if-its-not-on-linu
     PKG_OK=$(dpkg-query -W -f='${Status}' "$PKG_NAME" 2>/dev/null | grep -c "install ok installed" || echo "0")
-    if [ "1" -eq "$PKG_OK" ]; then
+    if [ "1" == "$PKG_OK" ]; then
         echo "Uninstalling $1..."
         sudo apt -qq --yes remove "$1"
     fi
