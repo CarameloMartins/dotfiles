@@ -23,8 +23,6 @@
         "suppressResultsExplorerNotice": false,
         "suppressShowKeyBindingsNotice": true
     },
-    "phpcs.standard": "PSR2",
-    "phpcs.executablePath": "/home/hmartins/.composer/vendor/bin/phpcs",
     "python.formatting.autopep8Args": [
         "--max-line-length",
         "120"
@@ -32,7 +30,6 @@
     "git.confirmSync": false,
     "editor.formatOnSave": true,
     "explorer.confirmDragAndDrop": false,
-    "editor.fontSize": 11,
     "[latex]": {
         "editor.fontSize": 14,
         "editor.wordWrap": "on"
@@ -75,21 +72,6 @@
         "**/build/**": true,
         "**/dist/**": true
     },
-    "puppet.installDirectory": "/opt/puppetlabs/pdk",
-    "puppet.installType": "pdk",
-    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
-    "php-cs-fixer.lastDownload": 1562088922773,
-    "workbench.colorTheme": "Dracula Soft",
-    "vsicons.dontShowNewVersionMessage": true,
-    "go.gopath": "~/.gvm/pkgsets/go1.13.5/global",
-    "go.goroot": "~/.gvm/gos/go1.13.5",
-    "go.coverOnTestPackage": false,
-    "go.lintOnSave": "file",
-    "go.vetOnSave": "package",
-    "go.lintTool": "golangci-lint",
-    "go.lintFlags": [
-        "--fast"
-    ],
     "python.analysis.cachingLevel": "Library",
     "python.autoComplete.addBrackets": true,
     "python.autoUpdateLanguageServer": false,
@@ -109,5 +91,24 @@
     "python.dataScience.enablePlotViewer": false,
     "python.experiments.enabled": false,
     "python.formatting.autopep8Path": "/home/hmartins/.pyenv/versions/3.7.0/bin/autopep8",
-    "go.formatTool": "goimports"
+    "go.formatTool": "gofmt",
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 120,
+    "editor.minimap.renderCharacters": false,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "go.useLanguageServer": true,
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+        // Optional: Disable snippets, as they conflict with completion ranking.
+        "editor.snippetSuggestions": "none",
+    },
+    "[go.mod]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+    }
 }
