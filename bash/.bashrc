@@ -168,16 +168,6 @@ fi
 # tfenv
 export PATH="$HOME/.tfenv/bin:$PATH"
 
-# asdf
-if [ "$OS_NAME" = "Darwin" ]; then
-    PREFIX="/usr/local/opt/asdf"
-    . "$PREFIX/asdf.sh"
-    . "$PREFIX/etc/bash_completion.d/asdf.bash"
-else
-    . "$HOME/.asdf/asdf.sh"
-    . "$HOME/.asdf/completions/asdf.bash"
-fi
-
 # GPG Signing
 export GPG_TTY=$(tty)
 
@@ -235,3 +225,9 @@ fi
 # PS1
 export PROMPT_COMMAND="$PROMPT_COMMAND;_prompt" && _prompt
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
