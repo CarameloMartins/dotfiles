@@ -90,7 +90,7 @@
     "python.dataScience.enableCellCodeLens": false,
     "python.dataScience.enablePlotViewer": false,
     "python.experiments.enabled": false,
-    "python.formatting.autopep8Path": "/home/hmartins/.pyenv/versions/3.7.0/bin/autopep8",
+    "python.formatting.autopep8Path": "",
     "go.formatTool": "gofmt",
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 120,
