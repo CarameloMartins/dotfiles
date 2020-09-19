@@ -172,6 +172,7 @@ if [ "$OPTIONS_SYMLINK" -eq "1" ]; then
     execute "stow -v ssh/ -t $HOME"
     execute "stow -v tmux/ -t $HOME"
     execute "stow -v vim/ -t $HOME"
+    execute "stow -v zsh/ -t $HOME"
 
     if [[ "$OS_NAME" == "Linux" ]]; then
         mkdir -p "$HOME/.config/Code/User"

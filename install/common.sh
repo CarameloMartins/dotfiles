@@ -19,11 +19,13 @@ install tox
 install unzip
 install wget
 install bash-completion
+install zsh
 
 install bash dir pyenv ~/.pyenv https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
 install bash cmd gvm https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer
 
 install clone tpm https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+install clone ohmyzsh https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
 # vim-plug
 
