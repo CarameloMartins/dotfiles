@@ -13,6 +13,7 @@ fi
 
 # Load auxiliary files.
 source "$HOME/.zsh_functions"
+source "$HOME/.aliases"
 
 # ohmyzsh configurations.
 export ZSH=$HOME/.oh-my-zsh
