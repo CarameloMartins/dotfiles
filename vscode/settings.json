@@ -92,8 +92,6 @@
     "python.experiments.enabled": false,
     "python.formatting.autopep8Path": "",
     "go.formatTool": "gofmt",
-    "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 120,
     "editor.minimap.renderCharacters": false,
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "go.useLanguageServer": true,
@@ -110,5 +108,11 @@
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         },
+    },
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.wordWrapColumn": 120,
+        "editor.fontSize": 14,
+        "editor.quickSuggestions": false
     },
 }
