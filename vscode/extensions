@@ -1,5 +1,4 @@
 ban.spellright
-blzjns.vscode-raml
 christian-kohler.path-intellisense
 DavidAnson.vscode-markdownlint
 eamodio.gitlens
@@ -14,7 +13,6 @@ ms-python.python
 njpwerner.autodocstring
 PatrykPeszko.vscode-proselint
 PKief.material-icon-theme
-redhat.java
 timonwong.shellcheck
 wholroyd.HCL
 yzhang.markdown-all-in-one

@@ -12,7 +12,6 @@
     "git.enableSmartCommit": true,
     "window.zoomLevel": 0,
     "latex-workshop.view.pdf.viewer": "tab",
-    "workbench.iconTheme": "material-icon-theme",
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -93,26 +92,29 @@
     "python.formatting.autopep8Path": "",
     "go.formatTool": "gofmt",
     "editor.minimap.renderCharacters": false,
-    "workbench.colorTheme": "Gruvbox Dark Hard",
     "go.useLanguageServer": true,
     "[go]": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
-        },
-        // Optional: Disable snippets, as they conflict with completion ranking.
-        "editor.snippetSuggestions": "none"
+        }
     },
     "[go.mod]": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
-        },
+        }
     },
     "[markdown]": {
-        "editor.wordWrap": "on",
+        "editor.wordWrap": "bounded",
         "editor.wordWrapColumn": 120,
-        "editor.fontSize": 14,
-        "editor.quickSuggestions": false
+        "editor.fontSize": 16,
+        "editor.fontFamily": "Montserrat",
+        "editor.quickSuggestions": true,
+        "editor.wordBasedSuggestions": false,
+        "editor.tabSize": 2,
+        "editor.suggest.showSnippets": false,
     },
+    "workbench.iconTheme": "material-icon-theme",
+    "vscodeMarkdownNotes.newNoteDirectory": "notes/"
 }
