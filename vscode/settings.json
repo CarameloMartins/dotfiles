@@ -116,5 +116,13 @@
         "editor.suggest.showSnippets": false,
     },
     "workbench.iconTheme": "material-icon-theme",
-    "vscodeMarkdownNotes.newNoteDirectory": "notes/"
+    "vscodeMarkdownNotes.newNoteDirectory": "notes/",
+    "spellright.language": [
+        "en_US"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ]
 }

@@ -39,10 +39,12 @@ fi
 export KUBECONFIG="$HOME/.kube/config"
 
 if [ -d "$HOME/.kube/profiles/" ]; then
-    for FILE in "$HOME"/.kube/profiles/*
-    do
-        export KUBECONFIG="$KUBECONFIG:$FILE"
-    done
+    if [ "$(ls -A $HOME/.kube/profiles/)" ]; then
+        for FILE in "$HOME"/.kube/profiles/*
+        do
+            export KUBECONFIG="$KUBECONFIG:$FILE"
+        done
+    fi
 fi
 
 # nvm
