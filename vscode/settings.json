@@ -124,5 +124,8 @@
     "jupyter.enableAutoMoveToNextCell": false,
     "jupyter.enabled": false,
     "jupyter.enableCellCodeLens": false,
-    "jupyter.enablePlotViewer": false
+    "jupyter.enablePlotViewer": false,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code', 'Courier New', monospace",
+    "workbench.colorTheme": "Gruvbox Dark Medium"
 }
