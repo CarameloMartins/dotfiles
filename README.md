@@ -14,6 +14,7 @@ configurations and bootstrap scripts.
 
 - Run `dotfiles.sh`.
 - `git` - This will set global `.gitconfig` and `.gitignore` files. For privacy, email and user should be set in another file (`~/.gitconfig.id)` and will be included in the configuration.
+- Update VS Code extensions: `code --list-extensions > vscode/extensions`.
 
 ## Usage
 ```hugo.martins at LIS-MBP16-0012 in ~/.dotfiles
