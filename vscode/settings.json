@@ -127,5 +127,11 @@
     "jupyter.enablePlotViewer": false,
     "editor.fontLigatures": true,
     "editor.fontFamily": "'Fira Code', 'Courier New', monospace",
-    "workbench.colorTheme": "Gruvbox Dark Medium"
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
 }
