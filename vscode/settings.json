@@ -19,8 +19,6 @@
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": false,
         "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true
     },
     "python.formatting.autopep8Args": [
         "--max-line-length",
@@ -71,7 +69,6 @@
         "**/build/**": true,
         "**/dist/**": true
     },
-    "python.analysis.cachingLevel": "Library",
     "python.autoComplete.addBrackets": true,
     "python.autoUpdateLanguageServer": false,
     "python.experiments.enabled": false,
@@ -110,28 +107,16 @@
         "latex",
         "plaintext"
     ],
-    "vscodeMarkdownNotes.newNoteDirectory": "notes/wip/",
-    "jupyter.allowImportFromNotebook": false,
-    "jupyter.addGotoCodeLenses": false,
-    "jupyter.allowLiveShare": false,
-    "jupyter.askForKernelRestart": false,
-    "jupyter.askForLargeDataFrames": false,
-    "jupyter.changeDirOnImportExport": false,
-    "jupyter.collapseCellInputCodeByDefault": false,
-    "jupyter.colorizeInputBox": false,
-    "jupyter.debugJustMyCode": false,
-    "jupyter.decorateCells": false,
-    "jupyter.enableAutoMoveToNextCell": false,
-    "jupyter.enabled": false,
-    "jupyter.enableCellCodeLens": false,
-    "jupyter.enablePlotViewer": false,
     "editor.fontLigatures": true,
     "editor.fontFamily": "'Fira Code', 'Courier New', monospace",
     "workbench.colorTheme": "Gruvbox Dark Medium",
+    "markdown.extension.italic.indicator": "_",
+    "markdown.extension.toc.unorderedList.marker": "*",
     "workbench.editorAssociations": [
         {
             "viewType": "jupyter.notebook.ipynb",
             "filenamePattern": "*.ipynb"
         }
-    ]
+    ],
+    "python.analysis.completeFunctionParens": true,
 }
