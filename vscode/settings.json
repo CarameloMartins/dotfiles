@@ -112,11 +112,8 @@
     "workbench.colorTheme": "Gruvbox Dark Medium",
     "markdown.extension.italic.indicator": "_",
     "markdown.extension.toc.unorderedList.marker": "*",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "python.analysis.completeFunctionParens": true,
 }
