@@ -76,9 +76,9 @@ install(){
     elif [[ "$(uname)" == Darwin ]]; then
         if [ "$1" = "cask" ]; then
             PKG_NAME=$2
-            PKG_OK=$(brew cask list | grep "$PKG_NAME")
+            PKG_OK=$(brew list --cask | grep "$PKG_NAME")
             if [ "" = "$PKG_OK" ]; then
-                brew cask install "$PKG_NAME"
+                brew install --cask "$PKG_NAME"
             fi
         else
             PKG_OK=$(brew list | grep "$PKG_NAME")
