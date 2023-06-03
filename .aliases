@@ -1,0 +1,48 @@
+OS=$(uname)
+PROJECTS_PATH="$HOME/Projects"
+
+# Docker
+alias docker-clean='docker rm $(docker ps -a -q) && docker rmi $(docker images -q)'
+
+# Directory Iteration
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias cdp="cd $PROJECTS_PATH && cd"
+
+# Listing
+if [[ $OS == "Darwin" ]]; then
+    alias ls="ls -G"
+    alias ll="ls -G -al"
+else
+    alias ls="ls --color=auto"
+    alias ll="ls --color -al"
+fi
+
+# Security
+alias sha1='openssl sha1'
+
+# Networking
+alias ping='ping -c 5'
+
+# System
+alias df='df -H'
+alias du='du -ch'
+alias top='htop'
+
+# Tmux
+alias tkill='tmux kill-server'
+
+# nvim
+alias vim='nvim'
+
+# kubectl
+alias k='kubectl'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias krm='kubectl delete'
+alias kctx='kubectl config use-context'
+alias kctxs='kubectl config get-contexts'
+alias kc='kubectl config'
+alias kns='kubectl config set-context --current --namespace'

@@ -1,0 +1,32 @@
+[color]
+    ui = auto
+
+[push]
+    default = matching
+
+[core]
+    editor = nvim
+    excludesfile = ~/.gitignore
+	hooksPath = /usr/local/dd/global_hooks
+
+[alias]
+    prb = remote update origin --prune
+    last = log -1 HEAD
+    lg = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%ar)%Creset by %Cblue<%an>%Creset' --no-merges
+    s = status
+    d = diff
+    co = checkout
+    br = branch
+    pr = pull --rebase
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+[gpg]
+    format = ssh
+
+[include]
+    path = "~/.gitconfig.id"
+
+[includeIf "gitdir:~/pp/"]
+    path = "~/pp/.gitconfig"
